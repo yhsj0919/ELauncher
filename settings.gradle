@@ -1,0 +1,2 @@
+rootProject.name='ELauncher'
+include ':app'
