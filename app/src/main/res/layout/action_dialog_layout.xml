@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="340dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_line"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:paddingLeft="8dp"
+        android:singleLine="true"
+        android:text="功能名称"
+        android:textColor="@android:color/black"
+        android:textSize="20dp" />
+
+
+    <LinearLayout
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/tv_name"
+        android:layout_margin="8dp"
+        android:background="@android:color/black"
+        android:orientation="vertical" />
+
+    <RadioGroup
+        android:id="@+id/actionGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line"
+        android:minHeight="150dp"
+        android:padding="8dp">
+
+        <RadioButton
+            android:id="@+id/none"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="无"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
+        <RadioButton
+            android:id="@+id/back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="返回上一级"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
+        <RadioButton
+            android:id="@+id/home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="返回主页"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
+        <RadioButton
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="全局刷新"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
+        <RadioButton
+            android:id="@+id/clear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="加速"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/cancel"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/actionGroup"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_line"
+        android:gravity="center"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:text="取消"
+        android:textColor="@android:color/black" />
+
+</RelativeLayout>

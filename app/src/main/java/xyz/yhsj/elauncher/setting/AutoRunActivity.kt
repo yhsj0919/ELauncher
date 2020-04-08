@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_auto_run.*
 import xyz.yhsj.elauncher.R
 import xyz.yhsj.elauncher.adapter.AutoRunListAdapter
+import xyz.yhsj.elauncher.utils.ActionKey
 import xyz.yhsj.elauncher.utils.SpUtil
 import xyz.yhsj.elauncher.utils.getAllApp
 import kotlin.concurrent.thread
@@ -22,13 +23,13 @@ class AutoRunActivity : AppCompatActivity() {
 
         tv_package.setOnClickListener { refreshApp() }
 
-        cb_open.isChecked = SpUtil.getBoolean(this, "AutoRun", false)
+        cb_open.isChecked = SpUtil.getBoolean(this, ActionKey.AUTO_RUN, false)
 
         cb_open.setOnCheckedChangeListener { _, b ->
-            SpUtil.setValue(this, "AutoRun", b)
+            SpUtil.setValue(this, ActionKey.AUTO_RUN, b)
         }
 
-        tv_package.text = SpUtil.getString(this, "AutoRun_Name", "点击选取")
+        tv_package.text = SpUtil.getString(this, ActionKey.AUTO_RUN_NAME, "点击选取")
 
         autoRunListAdapter = AutoRunListAdapter(appList)
         appList.layoutManager = LinearLayoutManager(this)
@@ -39,8 +40,8 @@ class AutoRunActivity : AppCompatActivity() {
             val item = autoRunListAdapter.data[position]
             tv_package.text = item.name
 
-            SpUtil.setValue(this, "AutoRun_Name", item.name)
-            SpUtil.setValue(this, "AutoRun_Package", item.packageName)
+            SpUtil.setValue(this, ActionKey.AUTO_RUN_NAME, item.name)
+            SpUtil.setValue(this, ActionKey.AUTO_RUN_PACKAGE, item.packageName)
 
             autoRunListAdapter.data = arrayListOf()
         }

@@ -72,9 +72,11 @@
             android:background="@android:color/black" />
 
         <LinearLayout
+            android:id="@+id/lay_click"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:background="@drawable/shape"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
@@ -87,18 +89,21 @@
                 android:textSize="20dp" />
 
             <TextView
+                android:id="@+id/tv_click"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="返回"
+                android:text="无"
                 android:textSize="16dp" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/lay_double"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:background="@drawable/shape"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
@@ -111,18 +116,21 @@
                 android:textSize="20dp" />
 
             <TextView
+                android:id="@+id/tv_double"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="首页"
+                android:text="无"
                 android:textSize="16dp" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/lay_long"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:background="@drawable/shape"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
@@ -135,11 +143,120 @@
                 android:textSize="20dp" />
 
             <TextView
+                android:id="@+id/tv_long"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="刷新页面"
+                android:text="无"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_up"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/shape"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="上滑"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tv_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="无"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_down"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/shape"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="下滑"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tv_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="无"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_left"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/shape"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="左滑"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tv_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="无"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_right"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/shape"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="右滑"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="无"
                 android:textSize="16dp" />
         </LinearLayout>
     </LinearLayout>

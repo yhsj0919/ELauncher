@@ -31,6 +31,11 @@ class SettingActivity : AppCompatActivity() {
         accessibility.setOnClickListener {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
         }
+
+        inputMethod.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_INPUT_METHOD_SETTINGS));
+        }
+
         deviceAdmin.setOnClickListener {
             val cm = ComponentName(
                 "com.android.settings",
@@ -42,7 +47,7 @@ class SettingActivity : AppCompatActivity() {
         }
 
         about.setOnClickListener {
-            Toast.makeText(this, "很简单的小桌面\n有什么问题的话\n可以在群里 @永恒瞬间", Toast.LENGTH_LONG).show()
+            startActivity(Intent(this, AboutActivity::class.java));
         }
 
     }

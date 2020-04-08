@@ -37,11 +37,13 @@ class HoverBallService : Service() {
         smallWindowParams.format = 1
         smallWindowParams.flags = 40
         smallWindowParams.gravity = 51
-        smallWindowParams.width = 100
-        smallWindowParams.height = 100
+        smallWindowParams.width = 60
+        smallWindowParams.height = 60
         smallWindowParams.x = screenWidth
         smallWindowParams.y = (screenHeight / 2) - 50
 
         wm.addView(hoverBallView, smallWindowParams)
+
+//        hoverBallView.alpha=0.1f
     }
 }

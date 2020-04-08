@@ -19,6 +19,7 @@ import xyz.yhsj.elauncher.adapter.AppListAdapter
 import xyz.yhsj.elauncher.bean.AppInfo
 import xyz.yhsj.elauncher.service.HoverBallService
 import xyz.yhsj.elauncher.setting.SettingActivity
+import xyz.yhsj.elauncher.utils.ActionKey
 import xyz.yhsj.elauncher.utils.SpUtil
 import xyz.yhsj.elauncher.utils.getAllApp
 import xyz.yhsj.elauncher.widget.AppDialog
@@ -35,8 +36,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //应用自启动
-        if (SpUtil.getBoolean(this, "AutoRun", false)) {
-            val packageName = SpUtil.getString(this, "AutoRun_Package", "")!!
+        if (SpUtil.getBoolean(this, ActionKey.AUTO_RUN, false)) {
+            val packageName = SpUtil.getString(this, ActionKey.AUTO_RUN_PACKAGE, "")!!
             val intent = packageManager.getLaunchIntentForPackage(packageName)
             if (intent != null) {
                 startActivity(intent);
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         }
         //开启悬浮球
         if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.M || Settings.canDrawOverlays(this))
-            && SpUtil.getBoolean(this, "HoverBall", false)
+            && SpUtil.getBoolean(this, ActionKey.HOVER_BALL, false)
         ) {
             startService(Intent(this, HoverBallService::class.java))
         }
@@ -88,8 +89,7 @@ class MainActivity : AppCompatActivity() {
                         startActivity(Intent(this, SettingActivity::class.java))
                     }
                     "clear" -> {
-                        val i = Intent("com.mogu.clear_mem")
-                        sendBroadcast(i)
+                        sendBroadcast(Intent("com.mogu.clear_mem"))
                     }
                 }
             }
