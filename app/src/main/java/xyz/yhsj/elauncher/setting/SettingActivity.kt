@@ -2,6 +2,7 @@ package xyz.yhsj.elauncher.setting
 
 import android.content.ComponentName
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
@@ -48,6 +49,12 @@ class SettingActivity : AppCompatActivity() {
 
         about.setOnClickListener {
             startActivity(Intent(this, AboutActivity::class.java));
+        }
+
+        unInstall.setOnClickListener {
+            val uri = Uri.fromParts("package", this.packageName, null)
+            val intent = Intent(Intent.ACTION_DELETE, uri)
+            startActivity(intent)
         }
 
     }

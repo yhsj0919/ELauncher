@@ -21,6 +21,7 @@ class AppListAdapter(recyclerView: RecyclerView) :
             when (model.packageName) {
                 "setting" -> helper.setImageResource(R.id.icon, R.mipmap.ic_setting)
                 "clear" -> helper.setImageResource(R.id.icon, R.mipmap.ic_clear)
+                "wifi" -> helper.setImageResource(R.id.icon, R.mipmap.ic_wifi)
                 else -> helper.setImageResource(R.id.icon, R.mipmap.ic_launcher)
             }
         }

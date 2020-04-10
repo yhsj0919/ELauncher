@@ -71,6 +71,18 @@
             android:layout_height="1dp"
             android:background="@android:color/black" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="悬浮球开启前，请先设置下面的功能，防止开启后无法返回" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="长按悬浮球，然后拖动，可进行悬浮球的移动操作" />
+
         <LinearLayout
             android:id="@+id/lay_click"
             android:layout_width="match_parent"

@@ -5,7 +5,7 @@ import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.pm.PackageManager
+import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -31,10 +31,15 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var appChangeReceiver: AppChangeReceiver
 
+    lateinit var wifiManager: WifiManager
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //获取wifi管理服务
+        wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+
         //应用自启动
         if (SpUtil.getBoolean(this, ActionKey.AUTO_RUN, false)) {
             val packageName = SpUtil.getString(this, ActionKey.AUTO_RUN_PACKAGE, "")!!
@@ -91,6 +96,21 @@ class MainActivity : AppCompatActivity() {
                     "clear" -> {
                         sendBroadcast(Intent("com.mogu.clear_mem"))
                     }
+
+                    "wifi" -> {
+                        //获取wifi开关状态
+                        val status = wifiManager.wifiState
+                        if (status == WifiManager.WIFI_STATE_ENABLED) {
+                            //wifi打开状态则关闭
+                            wifiManager.isWifiEnabled = false;
+                            Toast.makeText(this, "wifi已关闭", Toast.LENGTH_SHORT).show()
+                        } else {
+                            //关闭状态则打开
+                            wifiManager.isWifiEnabled = true;
+                            Toast.makeText(this, "wifi已打开", Toast.LENGTH_SHORT).show()
+
+                        }
+                    }
                 }
             }
         }
@@ -121,6 +141,7 @@ class MainActivity : AppCompatActivity() {
             val appInfos = getAllApp(this)
             appInfos.add(AppInfo(name = "桌面设置", packageName = "setting", isApp = false))
             appInfos.add(AppInfo(name = "清理后台", packageName = "clear", isApp = false))
+            appInfos.add(AppInfo(name = "wifi", packageName = "wifi", isApp = false))
             // 如果需要更新UI 回到主线程中进行处理
 
             val apps = appInfos.filter {
