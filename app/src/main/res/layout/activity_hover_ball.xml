@@ -89,6 +89,79 @@
             android:text="悬浮球自杀后可通过通知栏的按钮恢复"
             android:textSize="16dp" />
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/shape"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="透明"
+                android:textSize="20dp" />
+
+            <com.mohammedalaa.seekbar.RangeSeekBarView
+                android:id="@+id/seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barHeight="@dimen/value_bar_barHeight"
+                app:baseColor="#cccccc"
+                app:circleRadius="@dimen/value_bar_circleRadius"
+                app:circleTextColor="@color/white"
+                app:circleTextSize="@dimen/value_bar_circleTextSize"
+                app:currentValue="100"
+                app:fillColor="#555555"
+                app:maxValue="100"
+                app:minValue="10"
+                app:stepValue="10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/shape"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="尺寸"
+                android:textSize="20dp" />
+
+            <com.mohammedalaa.seekbar.RangeSeekBarView
+                android:id="@+id/ballSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barHeight="@dimen/value_bar_barHeight"
+                app:baseColor="#cccccc"
+                app:circleRadius="@dimen/value_bar_circleRadius"
+                app:circleTextColor="@color/white"
+                app:circleTextSize="@dimen/value_bar_circleTextSize"
+                app:currentValue="50"
+                app:fillColor="#555555"
+                app:maxValue="100"
+                app:minValue="30"
+                app:stepValue="10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black" />
+
         <LinearLayout
             android:id="@+id/lay_click"
             android:layout_width="match_parent"

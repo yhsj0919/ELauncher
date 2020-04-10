@@ -3,12 +3,12 @@
     android:shape="oval">
 
     <size
-        android:width="35dp"
-        android:height="35dp" />
+        android:width="100dp"
+        android:height="100dp" />
 
     <stroke
-        android:width="2dp"
+        android:width="5dp"
         android:color="#000000"
-        android:dashWidth="2dp"
-        android:dashGap="6dp" />
+        android:dashWidth="5dp"
+        android:dashGap="25dp" />
 </shape>

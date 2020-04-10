@@ -11,12 +11,17 @@ import android.os.Message
 import android.provider.Settings
 import android.util.Log
 import android.widget.RadioGroup
+import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
+import com.mohammedalaa.seekbar.OnRangeSeekBarChangeListener
+import com.mohammedalaa.seekbar.RangeSeekBarView
 import kotlinx.android.synthetic.main.activity_hover_ball.*
 import kotlinx.android.synthetic.main.activity_hover_ball.back
 import kotlinx.android.synthetic.main.activity_setting.*
+import org.greenrobot.eventbus.EventBus
 import xyz.yhsj.elauncher.R
+import xyz.yhsj.elauncher.event.MessageEvent
 import xyz.yhsj.elauncher.service.HoverBallService
 import xyz.yhsj.elauncher.utils.ActionKey
 import xyz.yhsj.elauncher.utils.SpUtil
@@ -107,6 +112,48 @@ class HoverBallActivity : AppCompatActivity() {
             //改变选中状态
             cb_open.isChecked = SpUtil.getBoolean(this, ActionKey.HOVER_BALL, false)
         }
+        //透明度
+        seekbar.setCurrentValue(SpUtil.getInt(this, ActionKey.HOVER_BALL_ALPHA, 100))
+        seekbar.setOnRangeSeekBarViewChangeListener(object : OnRangeSeekBarChangeListener {
+            override fun onProgressChanged(
+                seekBar: RangeSeekBarView?,
+                progress: Int,
+                fromUser: Boolean
+            ) {
+                if (fromUser) {
+                    SpUtil.setValue(this@HoverBallActivity, ActionKey.HOVER_BALL_ALPHA, progress)
+                    EventBus.getDefault().post(MessageEvent(ActionKey.HOVER_BALL_ALPHA))
+                }
+            }
+            override fun onStartTrackingTouch(seekBar: RangeSeekBarView?) {
+            }
+            override fun onStopTrackingTouch(seekBar: RangeSeekBarView?) {
+            }
+        })
+
+        //大小
+        ballSize.setCurrentValue(SpUtil.getInt(this, ActionKey.HOVER_BALL_SIZE, 50))
+        ballSize.setOnRangeSeekBarViewChangeListener(object : OnRangeSeekBarChangeListener {
+            override fun onProgressChanged(
+                seekBar: RangeSeekBarView?,
+                progress: Int,
+                fromUser: Boolean
+            ) {
+                if (fromUser) {
+                    SpUtil.setValue(this@HoverBallActivity, ActionKey.HOVER_BALL_SIZE, progress)
+                    EventBus.getDefault().post(MessageEvent(ActionKey.HOVER_BALL_SIZE))
+                }
+            }
+
+            override fun onStartTrackingTouch(seekBar: RangeSeekBarView?) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: RangeSeekBarView?) {
+
+            }
+        })
+
 
         lay_click.setOnClickListener {
             changeAction(0)

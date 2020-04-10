@@ -9,6 +9,8 @@ object ActionKey {
     val AUTO_RUN_PACKAGE = "AutoRun_Package"
     val AUTO_RUN_NAME = "AutoRun_Name"
     val HOVER_BALL = "HoverBall"
+    val HOVER_BALL_ALPHA = "HoverBallAlpha"
+    val HOVER_BALL_SIZE = "HoverBallSize"
     val HOVER_BALL_CLICK = "HoverBallClick"
     val HOVER_BALL_LONG_CLICK = "HoverBallLongClick"
     val HOVER_BALL_DOUBLE_CLICK = "HoverBallDoubleClick"
