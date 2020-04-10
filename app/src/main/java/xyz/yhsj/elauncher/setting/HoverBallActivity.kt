@@ -149,8 +149,8 @@ class HoverBallActivity : AppCompatActivity() {
                     R.id.home -> 2
                     R.id.refresh -> 3
                     R.id.clear -> 4
-                    R.id.kill -> 5
-                    R.id.wifi -> 6
+                    R.id.wifi -> 5
+                    R.id.kill -> 6
                     else -> 0
                 }
                 SpUtil.setValue(this, spAction[actionType], checkType)

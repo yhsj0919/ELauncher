@@ -16,11 +16,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.EventBus
 import xyz.yhsj.elauncher.adapter.AppListAdapter
 import xyz.yhsj.elauncher.bean.AppInfo
+import xyz.yhsj.elauncher.event.MessageEvent
 import xyz.yhsj.elauncher.service.HoverBallService
 import xyz.yhsj.elauncher.setting.SettingActivity
-import xyz.yhsj.elauncher.utils.*
+import xyz.yhsj.elauncher.utils.ActionKey
+import xyz.yhsj.elauncher.utils.Notifications
+import xyz.yhsj.elauncher.utils.SpUtil
+import xyz.yhsj.elauncher.utils.getAllApp
 import xyz.yhsj.elauncher.widget.AppDialog
 import kotlin.concurrent.thread
 
@@ -225,39 +230,13 @@ class MainActivity : AppCompatActivity() {
      */
     inner class NotificationReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-
-
             val action = intent.action
-
             when {
                 //开关悬浮球
                 ActionKey.ACTION_HOVER_BALL == action -> {
                     context.sendBroadcast(Intent("com.mogu.back_key"))
-                    Log.e(TAG, "开关悬浮球")
 
-                    if (isServiceRunning(this@MainActivity, HoverBallService::class.java.name)) {
-                        stopService(Intent(this@MainActivity, HoverBallService::class.java))
-                        Toast.makeText(this@MainActivity, "悬浮球已关闭", Toast.LENGTH_SHORT)
-                            .show()
-                    } else {
-                        //开启悬浮球
-                        if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.M || Settings.canDrawOverlays(
-                                this@MainActivity
-                            ))
-                            && SpUtil.getBoolean(this@MainActivity, ActionKey.HOVER_BALL, false)
-                        ) {
-                            startService(Intent(this@MainActivity, HoverBallService::class.java))
-                            Toast.makeText(this@MainActivity, "悬浮球已开启", Toast.LENGTH_SHORT)
-                                .show()
-                        } else {
-                            Toast.makeText(
-                                this@MainActivity,
-                                "悬浮球开启失败，请检查设置",
-                                Toast.LENGTH_SHORT
-                            )
-                                .show()
-                        }
-                    }
+                    EventBus.getDefault().post(MessageEvent(ActionKey.ACTION_HOVER_BALL))
                 }
                 ActionKey.ACTION_WIFI_STATUS == action -> {
                     //获取wifi开关状态

@@ -7,7 +7,9 @@ import android.view.*
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.core.content.getSystemService
+import org.greenrobot.eventbus.EventBus
 import xyz.yhsj.elauncher.R
+import xyz.yhsj.elauncher.event.MessageEvent
 import xyz.yhsj.elauncher.service.HoverBallService
 import xyz.yhsj.elauncher.utils.ActionKey
 import xyz.yhsj.elauncher.utils.SpUtil
@@ -137,9 +139,7 @@ class HoverBallView(context: Context) : FrameLayout(context), View.OnTouchListen
                 context.sendBroadcast(Intent(ActionKey.ACTION_WIFI_STATUS))
             }
             6 -> {
-                context.stopService(Intent(context, HoverBallService::class.java))
-                Toast.makeText(context, "悬浮球已关闭", Toast.LENGTH_SHORT)
-                    .show()
+                EventBus.getDefault().post(MessageEvent(ActionKey.ACTION_HOVER_BALL))
             }
 
 
