@@ -5,8 +5,10 @@ import android.content.Intent
 import android.util.Log
 import android.view.*
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.core.content.getSystemService
 import xyz.yhsj.elauncher.R
+import xyz.yhsj.elauncher.service.HoverBallService
 import xyz.yhsj.elauncher.utils.ActionKey
 import xyz.yhsj.elauncher.utils.SpUtil
 
@@ -130,6 +132,14 @@ class HoverBallView(context: Context) : FrameLayout(context), View.OnTouchListen
             }
             4 -> {
                 context.sendBroadcast(Intent("com.mogu.clear_mem"))
+            }
+            5 -> {
+                context.sendBroadcast(Intent(ActionKey.ACTION_WIFI_STATUS))
+            }
+            6 -> {
+                context.stopService(Intent(context, HoverBallService::class.java))
+                Toast.makeText(context, "悬浮球已关闭", Toast.LENGTH_SHORT)
+                    .show()
             }
 
 

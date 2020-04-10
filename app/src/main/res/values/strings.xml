@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">墨水屏</string>
     <string name="action_settings">Settings</string>
+    <string name="accessibility_service_name">测试无障碍服务</string>
+    <string name="accessibility_service_description">开启测试无障碍服务,体验更快捷的操作方式。</string>
 
+    <string name="channel_critical">Critical events</string>
+    <string name="channel_importance">Importance events</string>
+    <string name="channel_default">Default events</string>
+    <string name="channel_low">Low events</string>
+    <string name="channel_media">Media events</string>
 </resources>

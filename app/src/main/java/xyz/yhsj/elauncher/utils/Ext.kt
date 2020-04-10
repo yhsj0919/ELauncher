@@ -1,7 +1,9 @@
 package xyz.yhsj.elauncher.utils
 
+import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
+import android.text.TextUtils
 import xyz.yhsj.elauncher.bean.AppInfo
 import java.lang.Exception
 
@@ -35,4 +37,27 @@ fun getAllApp(context: Context): ArrayList<AppInfo> {
     }
 
     return apps
+}
+
+
+/**
+ * 判断服务是否开启
+ * @param context
+ * @param ServiceName
+ * @return
+ */
+fun isServiceRunning(context: Context, ServiceName: String?): Boolean {
+    if (TextUtils.isEmpty(ServiceName)) {
+        return false
+    }
+    val myManager =
+        context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+    val runningService = myManager.getRunningServices(30)
+
+    runningService.forEach {
+        if (it.service.className == ServiceName) {
+            return true
+        }
+    }
+    return false
 }

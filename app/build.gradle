@@ -7,11 +7,13 @@ android {
     buildToolsVersion "29.0.0"
 
     defaultConfig {
-        applicationId "com.moan.elauncher"
+//        applicationId "com.moan.elauncher"
+        //防止悬浮球加速时自杀
+        applicationId "com.moan.moanwm"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 4
-        versionName "1.3"
+        versionCode 5
+        versionName "1.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

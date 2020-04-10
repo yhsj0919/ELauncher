@@ -1,5 +1,6 @@
 package xyz.yhsj.elauncher
 
+import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -19,9 +20,7 @@ import xyz.yhsj.elauncher.adapter.AppListAdapter
 import xyz.yhsj.elauncher.bean.AppInfo
 import xyz.yhsj.elauncher.service.HoverBallService
 import xyz.yhsj.elauncher.setting.SettingActivity
-import xyz.yhsj.elauncher.utils.ActionKey
-import xyz.yhsj.elauncher.utils.SpUtil
-import xyz.yhsj.elauncher.utils.getAllApp
+import xyz.yhsj.elauncher.utils.*
 import xyz.yhsj.elauncher.widget.AppDialog
 import kotlin.concurrent.thread
 
@@ -30,8 +29,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var appListAdapter: AppListAdapter
 
     lateinit var appChangeReceiver: AppChangeReceiver
+    lateinit var notificationReceiver: NotificationReceiver
 
     lateinit var wifiManager: WifiManager
+
+    lateinit var mNM: NotificationManager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +41,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         //获取wifi管理服务
         wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        mNM = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Notifications.createNotification(this, mNM)
+        }
 
         //应用自启动
         if (SpUtil.getBoolean(this, ActionKey.AUTO_RUN, false)) {
@@ -55,15 +62,24 @@ class MainActivity : AppCompatActivity() {
             startService(Intent(this, HoverBallService::class.java))
         }
         //监听app安装，卸载，更新
-        val intentFilter = IntentFilter()
-        intentFilter.addAction("android.intent.action.PACKAGE_ADDED")
-        intentFilter.addAction("android.intent.action.PACKAGE_REMOVED")
-        intentFilter.addAction("android.intent.action.PACKAGE_REPLACED")
-        intentFilter.addAction("xyz.yhsj.PACKAGE_HIDE")
-        intentFilter.addDataScheme("package")
+        val appFilter = IntentFilter()
+        appFilter.addAction("android.intent.action.PACKAGE_ADDED")
+        appFilter.addAction("android.intent.action.PACKAGE_REMOVED")
+        appFilter.addAction("android.intent.action.PACKAGE_REPLACED")
+        appFilter.addAction("xyz.yhsj.PACKAGE_HIDE")
+        appFilter.addDataScheme("package")
 
         appChangeReceiver = AppChangeReceiver()
-        registerReceiver(appChangeReceiver, intentFilter)
+        registerReceiver(appChangeReceiver, appFilter)
+
+        //监听通知事件
+
+        val notificationFilter = IntentFilter()
+        notificationFilter.addAction(ActionKey.ACTION_HOVER_BALL)
+        //wifi开关
+        notificationFilter.addAction(ActionKey.ACTION_WIFI_STATUS)
+        notificationReceiver = NotificationReceiver()
+        registerReceiver(notificationReceiver, notificationFilter)
 
         //初始化应用列表
         appListAdapter = AppListAdapter(appList)
@@ -98,18 +114,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     "wifi" -> {
-                        //获取wifi开关状态
-                        val status = wifiManager.wifiState
-                        if (status == WifiManager.WIFI_STATE_ENABLED) {
-                            //wifi打开状态则关闭
-                            wifiManager.isWifiEnabled = false;
-                            Toast.makeText(this, "wifi已关闭", Toast.LENGTH_SHORT).show()
-                        } else {
-                            //关闭状态则打开
-                            wifiManager.isWifiEnabled = true;
-                            Toast.makeText(this, "wifi已打开", Toast.LENGTH_SHORT).show()
-
-                        }
+                        sendBroadcast(Intent(ActionKey.ACTION_WIFI_STATUS))
                     }
                 }
             }
@@ -161,6 +166,7 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(appChangeReceiver)
+        unregisterReceiver(notificationReceiver)
     }
 
     /**
@@ -212,8 +218,61 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-
     }
 
+    /**
+     * 内部类，监听通知变化
+     */
+    inner class NotificationReceiver : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
 
+
+            val action = intent.action
+
+            when {
+                //开关悬浮球
+                ActionKey.ACTION_HOVER_BALL == action -> {
+                    context.sendBroadcast(Intent("com.mogu.back_key"))
+                    Log.e(TAG, "开关悬浮球")
+
+                    if (isServiceRunning(this@MainActivity, HoverBallService::class.java.name)) {
+                        stopService(Intent(this@MainActivity, HoverBallService::class.java))
+                        Toast.makeText(this@MainActivity, "悬浮球已关闭", Toast.LENGTH_SHORT)
+                            .show()
+                    } else {
+                        //开启悬浮球
+                        if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.M || Settings.canDrawOverlays(
+                                this@MainActivity
+                            ))
+                            && SpUtil.getBoolean(this@MainActivity, ActionKey.HOVER_BALL, false)
+                        ) {
+                            startService(Intent(this@MainActivity, HoverBallService::class.java))
+                            Toast.makeText(this@MainActivity, "悬浮球已开启", Toast.LENGTH_SHORT)
+                                .show()
+                        } else {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "悬浮球开启失败，请检查设置",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+                    }
+                }
+                ActionKey.ACTION_WIFI_STATUS == action -> {
+                    //获取wifi开关状态
+                    val status = wifiManager.wifiState
+                    if (status == WifiManager.WIFI_STATE_ENABLED) {
+                        //wifi打开状态则关闭
+                        wifiManager.isWifiEnabled = false;
+                        Toast.makeText(this@MainActivity, "wifi已关闭", Toast.LENGTH_SHORT).show()
+                    } else {
+                        //关闭状态则打开
+                        wifiManager.isWifiEnabled = true;
+                        Toast.makeText(this@MainActivity, "wifi已打开", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+    }
 }

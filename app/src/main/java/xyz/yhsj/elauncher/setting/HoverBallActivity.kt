@@ -44,7 +44,9 @@ class HoverBallActivity : AppCompatActivity() {
         "返回上一级",
         "返回主页",
         "全局刷新",
-        "加速"
+        "清理后台",
+        "wifi开关",
+        "悬浮球自杀"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -147,6 +149,8 @@ class HoverBallActivity : AppCompatActivity() {
                     R.id.home -> 2
                     R.id.refresh -> 3
                     R.id.clear -> 4
+                    R.id.kill -> 5
+                    R.id.wifi -> 6
                     else -> 0
                 }
                 SpUtil.setValue(this, spAction[actionType], checkType)

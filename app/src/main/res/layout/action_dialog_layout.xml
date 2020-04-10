@@ -77,7 +77,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="加速"
+            android:text="清理后台"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
+        <RadioButton
+            android:id="@+id/wifi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="wifi开关"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
+        <RadioButton
+            android:id="@+id/kill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="悬浮球自杀"
             android:textColor="@android:color/black"
             android:textSize="18dp" />
 

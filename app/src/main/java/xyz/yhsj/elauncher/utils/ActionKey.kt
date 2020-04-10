@@ -16,4 +16,8 @@ object ActionKey {
     val HOVER_BALL_RIGHT = "HoverBallRight"
     val HOVER_BALL_UP = "HoverBallUp"
     val HOVER_BALL_DOWN = "HoverBallDown"
+
+    //通知栏开关悬浮球
+    val ACTION_HOVER_BALL = "xyz.yhsj.actionHoverBall"
+    val ACTION_WIFI_STATUS = "xyz.yhsj.wifiStatus"
 }
