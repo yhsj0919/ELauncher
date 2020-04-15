@@ -34,264 +34,326 @@
         android:layout_height="1dp"
         android:background="@android:color/black" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:orientation="vertical">
+        android:scrollbars="none">
+
 
         <LinearLayout
-            android:id="@+id/hoverBall"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@drawable/shape"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/hoverBall"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:padding="8dp"
-                android:text="悬浮球"
-                android:textColor="@android:color/black"
-                android:textSize="22dp" />
-
-            <ImageView
-                android:layout_width="15dp"
                 android:layout_height="65dp"
-                android:src="@mipmap/ic_go" />
-        </LinearLayout>
+                android:background="@drawable/shape"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/black" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="悬浮球"
+                    android:textColor="@android:color/black"
+                    android:textSize="22dp" />
 
-        <LinearLayout
-            android:id="@+id/autoRun"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@drawable/shape"
-            android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="65dp"
+                    android:src="@mipmap/ic_go" />
+            </LinearLayout>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:padding="8dp"
-                android:text="应用自启"
-                android:textColor="@android:color/black"
-                android:textSize="22dp" />
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
 
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="65dp"
-                android:src="@mipmap/ic_go" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/black" />
-
-        <LinearLayout
-            android:id="@+id/appList"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@drawable/shape"
-            android:orientation="horizontal">
-
-            <TextView
+            <LinearLayout
+                android:id="@+id/wallpaperSetting"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:padding="8dp"
-                android:text="列表设置"
-                android:textColor="@android:color/black"
-                android:textSize="22dp" />
-
-            <ImageView
-                android:layout_width="15dp"
                 android:layout_height="65dp"
-                android:src="@mipmap/ic_go" />
-        </LinearLayout>
+                android:background="@drawable/shape"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/black" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="壁纸设置"
+                    android:textColor="@android:color/black"
+                    android:textSize="22dp" />
 
-        <LinearLayout
-            android:id="@+id/appManager"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@drawable/shape"
-            android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="65dp"
+                    android:src="@mipmap/ic_go" />
+            </LinearLayout>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:padding="8dp"
-                android:text="应用管理"
-                android:textColor="@android:color/black"
-                android:textSize="22dp" />
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
 
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="65dp"
-                android:src="@mipmap/ic_go" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/black" />
-
-        <LinearLayout
-            android:id="@+id/accessibility"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@drawable/shape"
-            android:orientation="horizontal">
-
-            <TextView
+            <LinearLayout
+                android:id="@+id/appList"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:padding="8dp"
-                android:text="无障碍"
-                android:textColor="@android:color/black"
-                android:textSize="22dp" />
-
-            <ImageView
-                android:layout_width="15dp"
                 android:layout_height="65dp"
-                android:src="@mipmap/ic_go" />
-        </LinearLayout>
+                android:background="@drawable/shape"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/black" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="列表设置"
+                    android:textColor="@android:color/black"
+                    android:textSize="22dp" />
 
-        <LinearLayout
-            android:id="@+id/inputMethod"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@drawable/shape"
-            android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="65dp"
+                    android:src="@mipmap/ic_go" />
+            </LinearLayout>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:padding="8dp"
-                android:text="输入法"
-                android:textColor="@android:color/black"
-                android:textSize="22dp" />
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
 
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="65dp"
-                android:src="@mipmap/ic_go" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/black" />
-
-        <LinearLayout
-            android:id="@+id/deviceAdmin"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@drawable/shape"
-            android:orientation="horizontal">
-
-            <TextView
+            <LinearLayout
+                android:id="@+id/autoRun"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:padding="8dp"
-                android:text="设备管理器"
-                android:textColor="@android:color/black"
-                android:textSize="22dp" />
-
-            <ImageView
-                android:layout_width="15dp"
                 android:layout_height="65dp"
-                android:src="@mipmap/ic_go" />
-        </LinearLayout>
+                android:background="@drawable/shape"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/black" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="应用自启"
+                    android:textColor="@android:color/black"
+                    android:textSize="22dp" />
 
-        <LinearLayout
-            android:id="@+id/about"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@drawable/shape"
-            android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="65dp"
+                    android:src="@mipmap/ic_go" />
+            </LinearLayout>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:padding="8dp"
-                android:text="关于"
-                android:textColor="@android:color/black"
-                android:textSize="22dp" />
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
 
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="65dp"
-                android:src="@mipmap/ic_go" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/black" />
-
-        <LinearLayout
-            android:id="@+id/unInstall"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@drawable/shape"
-            android:orientation="horizontal">
-
-            <TextView
+            <LinearLayout
+                android:id="@+id/appManager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:padding="8dp"
-                android:text="卸载"
-                android:textColor="@android:color/black"
-                android:textSize="22dp" />
-
-            <ImageView
-                android:layout_width="15dp"
                 android:layout_height="65dp"
-                android:src="@mipmap/ic_go" />
+                android:background="@drawable/shape"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="应用管理"
+                    android:textColor="@android:color/black"
+                    android:textSize="22dp" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="65dp"
+                    android:src="@mipmap/ic_go" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
+
+            <LinearLayout
+                android:id="@+id/accessibility"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="@drawable/shape"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="无障碍"
+                    android:textColor="@android:color/black"
+                    android:textSize="22dp" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="65dp"
+                    android:src="@mipmap/ic_go" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
+
+            <LinearLayout
+                android:id="@+id/inputMethod"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="@drawable/shape"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="输入法"
+                    android:textColor="@android:color/black"
+                    android:textSize="22dp" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="65dp"
+                    android:src="@mipmap/ic_go" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
+
+            <LinearLayout
+                android:id="@+id/deviceAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="@drawable/shape"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="设备管理器"
+                    android:textColor="@android:color/black"
+                    android:textSize="22dp" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="65dp"
+                    android:src="@mipmap/ic_go" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
+
+            <LinearLayout
+                android:id="@+id/donate"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="@drawable/shape"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="赞赏"
+                    android:textColor="@android:color/black"
+                    android:textSize="22dp" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="65dp"
+                    android:src="@mipmap/ic_go" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
+
+            <LinearLayout
+                android:id="@+id/about"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="@drawable/shape"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="关于"
+                    android:textColor="@android:color/black"
+                    android:textSize="22dp" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="65dp"
+                    android:src="@mipmap/ic_go" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
+
+            <LinearLayout
+                android:id="@+id/unInstall"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="@drawable/shape"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="卸载"
+                    android:textColor="@android:color/black"
+                    android:textSize="22dp" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="65dp"
+                    android:src="@mipmap/ic_go" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/black" />
-    </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>

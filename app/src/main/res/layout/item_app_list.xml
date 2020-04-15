@@ -1,27 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shape"
     android:clickable="true"
     android:gravity="center"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:orientation="vertical">
 
-    <ImageView
+    <xyz.yhsj.elauncher.widget.RatioImageView
         android:id="@+id/icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        app:ratioHeight="1"
+        app:ratioWidth="1"
+        app:reference="width" />
 
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
         android:ellipsize="end"
         android:gravity="center"
         android:lines="1"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        android:textSize="14sp" />
+        android:textSize="16dp" />
 </LinearLayout>

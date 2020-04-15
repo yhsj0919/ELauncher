@@ -51,7 +51,8 @@ class HoverBallActivity : AppCompatActivity() {
         "全局刷新",
         "清理后台",
         "wifi开关",
-        "悬浮球自杀"
+        "悬浮球自杀",
+        "原生应用列表"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -120,14 +121,18 @@ class HoverBallActivity : AppCompatActivity() {
                 progress: Int,
                 fromUser: Boolean
             ) {
-                if (fromUser) {
-                    SpUtil.setValue(this@HoverBallActivity, ActionKey.HOVER_BALL_ALPHA, progress)
-                    EventBus.getDefault().post(MessageEvent(ActionKey.HOVER_BALL_ALPHA))
-                }
             }
+
             override fun onStartTrackingTouch(seekBar: RangeSeekBarView?) {
             }
+
             override fun onStopTrackingTouch(seekBar: RangeSeekBarView?) {
+                SpUtil.setValue(
+                    this@HoverBallActivity,
+                    ActionKey.HOVER_BALL_ALPHA,
+                    seekBar?.getCurrentValue() ?: 100
+                )
+                EventBus.getDefault().post(MessageEvent(ActionKey.HOVER_BALL_ALPHA))
             }
         })
 
@@ -139,10 +144,6 @@ class HoverBallActivity : AppCompatActivity() {
                 progress: Int,
                 fromUser: Boolean
             ) {
-                if (fromUser) {
-                    SpUtil.setValue(this@HoverBallActivity, ActionKey.HOVER_BALL_SIZE, progress)
-                    EventBus.getDefault().post(MessageEvent(ActionKey.HOVER_BALL_SIZE))
-                }
             }
 
             override fun onStartTrackingTouch(seekBar: RangeSeekBarView?) {
@@ -150,7 +151,12 @@ class HoverBallActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(seekBar: RangeSeekBarView?) {
-
+                SpUtil.setValue(
+                    this@HoverBallActivity,
+                    ActionKey.HOVER_BALL_SIZE,
+                    seekBar?.getCurrentValue() ?: 50
+                )
+                EventBus.getDefault().post(MessageEvent(ActionKey.HOVER_BALL_SIZE))
             }
         })
 
@@ -198,6 +204,7 @@ class HoverBallActivity : AppCompatActivity() {
                     R.id.clear -> 4
                     R.id.wifi -> 5
                     R.id.kill -> 6
+                    R.id.appList -> 7
                     else -> 0
                 }
                 SpUtil.setValue(this, spAction[actionType], checkType)

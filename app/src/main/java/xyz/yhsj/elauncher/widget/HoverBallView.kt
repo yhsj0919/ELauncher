@@ -1,5 +1,6 @@
 package xyz.yhsj.elauncher.widget
 
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -140,6 +141,15 @@ class HoverBallView(context: Context) : FrameLayout(context), View.OnTouchListen
             }
             6 -> {
                 EventBus.getDefault().post(MessageEvent(ActionKey.ACTION_HOVER_BALL))
+            }
+
+            7 -> {
+                val intent = Intent()
+                intent.component = ComponentName(
+                    "com.mgs.settings",
+                    "com.mgs.settings.app.AppMain"
+                )
+                context.startActivity(intent)
             }
 
 

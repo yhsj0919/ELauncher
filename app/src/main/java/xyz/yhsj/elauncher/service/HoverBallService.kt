@@ -81,7 +81,7 @@ class HoverBallService : Service() {
         smallWindowParams.gravity = 51
         smallWindowParams.width = ballSize
         smallWindowParams.height = ballSize
-        smallWindowParams.x = screenWidth
+        smallWindowParams.x = (screenWidth - ballSize-10)
         smallWindowParams.y = (screenHeight / 2) - 50
 
         wm.addView(hoverBallView, smallWindowParams)

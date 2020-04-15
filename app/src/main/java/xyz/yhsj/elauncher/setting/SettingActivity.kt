@@ -1,5 +1,6 @@
 package xyz.yhsj.elauncher.setting
 
+import android.Manifest
 import android.content.ComponentName
 import android.content.Intent
 import android.net.Uri
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_setting.*
 import xyz.yhsj.elauncher.R
+import xyz.yhsj.elauncher.permission.RxPermission
 
 
 class SettingActivity : AppCompatActivity() {
@@ -19,7 +21,14 @@ class SettingActivity : AppCompatActivity() {
         back.setOnClickListener { finish() }
         hoverBall.setOnClickListener { startActivity(Intent(this, HoverBallActivity::class.java)) }
         autoRun.setOnClickListener { startActivity(Intent(this, AutoRunActivity::class.java)) }
-        appList.setOnClickListener { Toast.makeText(this, "暂无功能", Toast.LENGTH_SHORT).show() }
+        appList.setOnClickListener {
+            startActivity(
+                Intent(
+                    this,
+                    AppListSettingActivity::class.java
+                )
+            )
+        }
         appManager.setOnClickListener {
             startActivity(
                 Intent(
@@ -27,6 +36,25 @@ class SettingActivity : AppCompatActivity() {
                     AppManagerActivity::class.java
                 )
             )
+        }
+
+        wallpaperSetting.setOnClickListener {
+            RxPermission(this)
+                .request(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                )
+                .subscribe({
+                    startActivity(
+                        Intent(
+                            this,
+                            WallpaperActivity::class.java
+                        )
+                    )
+                }, {
+                    Toast.makeText(this, "壁纸功能需要读写权限才能使用", Toast.LENGTH_LONG).show()
+                })
+
         }
 
         accessibility.setOnClickListener {
@@ -47,6 +75,9 @@ class SettingActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        donate.setOnClickListener {
+            startActivity(Intent(this, DonateActivity::class.java));
+        }
         about.setOnClickListener {
             startActivity(Intent(this, AboutActivity::class.java));
         }

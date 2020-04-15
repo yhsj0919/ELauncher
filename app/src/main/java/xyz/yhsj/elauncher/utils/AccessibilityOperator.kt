@@ -1,12 +1,17 @@
 package xyz.yhsj.elauncher.utils
 
 import android.accessibilityservice.AccessibilityService
+import android.accessibilityservice.AccessibilityService.GestureResultCallback
+import android.accessibilityservice.GestureDescription
+import android.accessibilityservice.GestureDescription.StrokeDescription
+import android.graphics.Path
 import android.os.Build
 import android.text.TextUtils
 import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import androidx.annotation.RequiresApi
+
 
 class AccessibilityOperator private constructor() {
     private var mAccessibilityEvent: AccessibilityEvent? = null
@@ -81,7 +86,6 @@ class AccessibilityOperator private constructor() {
         return resultNodeList
     }
 
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     fun findParentNodesById(viewId: String, depth: Int): List<AccessibilityNodeInfo> {
         val rootNodeInfo = this.rootNodeInfo
         val resultNodeList = mutableListOf<AccessibilityNodeInfo>()
@@ -161,11 +165,35 @@ class AccessibilityOperator private constructor() {
         return performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK)
     }
 
+    /**
+     * 模拟下滑操作
+     */
+    fun performScrollBackward() {
+        try {
+            Thread.sleep(500)
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+        performGlobalAction(AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD)
+    }
+
+    /**
+     * 模拟上滑操作
+     */
+    fun performScrollForward() {
+        try {
+            Thread.sleep(500)
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+        performGlobalAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)
+    }
+
+
     fun performGlobalAction(action: Int): Boolean {
         return accessibilityService!!.performGlobalAction(action)
     }
 
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     private fun getNodeInfo(nodeInfo: AccessibilityNodeInfo?): String {
         var result = ""
         if (nodeInfo != null) {
@@ -211,4 +239,47 @@ class AccessibilityOperator private constructor() {
         private val TAG = "AccessibilityOperator"
         val instance = AccessibilityOperator()
     }
+
+
+    // Simulates an L-shaped drag path: 200 pixels right, then 200 pixels down.
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun doRightThenDownDrag() {
+        Log.e(">>>>", ">>>>>>>>>手势执行了>>>>>>>>>>>>$accessibilityService")
+        val path = Path()
+        path.moveTo(300f, 800f)
+        path.lineTo(300f, 400f)
+        val sd = StrokeDescription(path, 0, 500)
+        //先横滑
+        val sss = accessibilityService?.dispatchGesture(
+            GestureDescription.Builder().addStroke(sd).build(),
+            object : GestureResultCallback() {
+                override fun onCompleted(gestureDescription: GestureDescription) {
+                    super.onCompleted(gestureDescription)
+
+                }
+
+                override fun onCancelled(gestureDescription: GestureDescription) {
+                    super.onCancelled(gestureDescription)
+                }
+
+            },
+            null
+        )
+
+        Log.e(">>>>", ">>>>>>>>>手势执行了>>>>>>>>>>>>$sss")
+    }
+
+    @RequiresApi(24)
+    fun dispatchGestureClick(x: Int, y: Int) {
+        val path = Path()
+        path.moveTo(x.toFloat(), y.toFloat())
+        accessibilityService?.dispatchGesture(
+            GestureDescription.Builder().addStroke(StrokeDescription(path, 0, 100)).build(),
+            null,
+            null
+        )
+    }
+
+
 }

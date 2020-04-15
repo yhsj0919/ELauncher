@@ -19,7 +19,13 @@ object ActionKey {
     val HOVER_BALL_UP = "HoverBallUp"
     val HOVER_BALL_DOWN = "HoverBallDown"
 
+    val APP_NAME_VISIBILITY = "App_Name_Visibility"
+    val APP_LIST_COLUMN = "App_List_Column"
+    val APP_LIST_ARRANGE = "App_List_Arrange"
+
     //通知栏开关悬浮球
     val ACTION_HOVER_BALL = "xyz.yhsj.actionHoverBall"
     val ACTION_WIFI_STATUS = "xyz.yhsj.wifiStatus"
+    val ACTION_APP_LIST_CHANGE = "xyz.yhsj.appListChange"
+    val ACTION_PACKAGE_HIDE = "xyz.yhsj.PACKAGE_HIDE"
 }

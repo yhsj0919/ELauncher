@@ -1,17 +1,24 @@
 package xyz.yhsj.elauncher
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.app.NotificationManager
+import android.app.WallpaperManager
 import android.content.BroadcastReceiver
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.drawable.BitmapDrawable
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.GestureDetector
 import android.view.KeyEvent
+import android.view.MotionEvent
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,6 +27,7 @@ import org.greenrobot.eventbus.EventBus
 import xyz.yhsj.elauncher.adapter.AppListAdapter
 import xyz.yhsj.elauncher.bean.AppInfo
 import xyz.yhsj.elauncher.event.MessageEvent
+import xyz.yhsj.elauncher.permission.RxPermission
 import xyz.yhsj.elauncher.service.HoverBallService
 import xyz.yhsj.elauncher.setting.SettingActivity
 import xyz.yhsj.elauncher.utils.ActionKey
@@ -27,6 +35,7 @@ import xyz.yhsj.elauncher.utils.Notifications
 import xyz.yhsj.elauncher.utils.SpUtil
 import xyz.yhsj.elauncher.utils.getAllApp
 import xyz.yhsj.elauncher.widget.AppDialog
+import java.util.*
 import kotlin.concurrent.thread
 
 
@@ -39,6 +48,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var wifiManager: WifiManager
 
     lateinit var mNM: NotificationManager
+
+    lateinit var layoutManager: GridLayoutManager
+
+    lateinit var listGesture: GestureDetector
+    lateinit var bGgesture: GestureDetector
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,29 +82,31 @@ class MainActivity : AppCompatActivity() {
         }
         //监听app安装，卸载，更新
         val appFilter = IntentFilter()
-        appFilter.addAction("android.intent.action.PACKAGE_ADDED")
-        appFilter.addAction("android.intent.action.PACKAGE_REMOVED")
-        appFilter.addAction("android.intent.action.PACKAGE_REPLACED")
-        appFilter.addAction("xyz.yhsj.PACKAGE_HIDE")
+        appFilter.addAction(Intent.ACTION_PACKAGE_ADDED)
+        appFilter.addAction(Intent.ACTION_PACKAGE_REMOVED)
+        appFilter.addAction(Intent.ACTION_PACKAGE_REPLACED)
+        appFilter.addAction(ActionKey.ACTION_PACKAGE_HIDE)
+        appFilter.addAction(ActionKey.ACTION_APP_LIST_CHANGE)
         appFilter.addDataScheme("package")
 
         appChangeReceiver = AppChangeReceiver()
         registerReceiver(appChangeReceiver, appFilter)
 
         //监听通知事件
-
         val notificationFilter = IntentFilter()
         notificationFilter.addAction(ActionKey.ACTION_HOVER_BALL)
         //wifi开关
         notificationFilter.addAction(ActionKey.ACTION_WIFI_STATUS)
+        notificationFilter.addAction(Intent.ACTION_WALLPAPER_CHANGED)
         notificationReceiver = NotificationReceiver()
         registerReceiver(notificationReceiver, notificationFilter)
 
         //初始化应用列表
         appListAdapter = AppListAdapter(appList)
-        val layoutManager = GridLayoutManager(this, 5)
-        layoutManager.reverseLayout = true
+        layoutManager = GridLayoutManager(this, SpUtil.getInt(this, ActionKey.APP_LIST_COLUMN, 5))
+        layoutManager.reverseLayout = SpUtil.getBoolean(this, ActionKey.APP_LIST_ARRANGE, true)
         appList.layoutManager = layoutManager
+
         appList.adapter = appListAdapter
 
         appListAdapter.setOnItemClickListener { _, _, position ->
@@ -140,18 +156,84 @@ class MainActivity : AppCompatActivity() {
             return@setOnItemLongClickListener true
         }
 
+
+        //手势处理
+        listGesture = GestureDetector(this, object :
+            GestureDetector.SimpleOnGestureListener() {
+            override fun onDoubleTap(e: MotionEvent?): Boolean {
+                appList.visibility = View.GONE
+                return true
+            }
+        })
+
+        bGgesture = GestureDetector(this, object :
+            GestureDetector.SimpleOnGestureListener() {
+            override fun onDoubleTap(e: MotionEvent?): Boolean {
+                appList.visibility = View.VISIBLE
+                return true
+            }
+
+            override fun onScroll(
+                e1: MotionEvent,
+                e2: MotionEvent,
+                distanceX: Float,
+                distanceY: Float
+            ): Boolean {
+                if (e1.y - e2.y > Math.abs(e1.x - e2.x) && e1.y - e2.y > 100) {
+                    //上
+                    appList.visibility = View.VISIBLE
+                    return true
+                }
+                return true
+            }
+        })
+
+        appList.setOnTouchListener { view, motionEvent ->
+            return@setOnTouchListener listGesture.onTouchEvent(motionEvent)
+        }
+        mainBg.setOnTouchListener { view, motionEvent ->
+
+            return@setOnTouchListener bGgesture.onTouchEvent(motionEvent)
+        }
+
         refreshApp()
+
+        getSysWallpaper()
     }
+
 
     /**
      * 刷新应用列表
      */
     fun refreshApp() {
+        layoutManager.spanCount = SpUtil.getInt(this, ActionKey.APP_LIST_COLUMN, 5)
+
+        val arrange = SpUtil.getBoolean(this, ActionKey.APP_LIST_ARRANGE, true)
+
+        layoutManager.reverseLayout = arrange
+
         thread {
             val appInfos = getAllApp(this)
-            appInfos.add(AppInfo(name = "桌面设置", packageName = "setting", isApp = false))
-            appInfos.add(AppInfo(name = "清理后台", packageName = "clear", isApp = false))
-            appInfos.add(AppInfo(name = "wifi", packageName = "wifi", isApp = false))
+            appInfos.add(
+                AppInfo(
+                    name = "桌面设置",
+                    packageName = "setting",
+                    isApp = false,
+                    updateTime = if (arrange) 0 else Date().time
+                )
+            )
+            appInfos.add(
+                AppInfo(
+                    name = "清理后台", packageName = "clear", isApp = false,
+                    updateTime = if (arrange) 0 else Date().time
+                )
+            )
+            appInfos.add(
+                AppInfo(
+                    name = "wifi", packageName = "wifi", isApp = false,
+                    updateTime = if (arrange) 0 else Date().time
+                )
+            )
             // 如果需要更新UI 回到主线程中进行处理
 
             val apps = appInfos.filter {
@@ -198,26 +280,31 @@ class MainActivity : AppCompatActivity() {
 
             val action = intent.action
 
-            when {
-                Intent.ACTION_PACKAGE_ADDED == action -> {
+            when (action) {
+                Intent.ACTION_PACKAGE_ADDED -> {
                     Log.e(TAG, packages + "应用程序安装了")
                     refreshApp()
                 }
-                Intent.ACTION_PACKAGE_REMOVED == action -> {
+                Intent.ACTION_PACKAGE_REMOVED -> {
                     Log.e(TAG, packages + "应用程序卸载了")
 
                     SpUtil.remove(context, packages + "")
 
                     refreshApp()
                 }
-                Intent.ACTION_PACKAGE_REPLACED == action -> {
+                Intent.ACTION_PACKAGE_REPLACED -> {
                     Log.e(TAG, packages + "应用程序覆盖了")
                     SpUtil.remove(context, packages + "")
                     refreshApp()
                 }
 
-                "xyz.yhsj.PACKAGE_HIDE" == action -> {
+                ActionKey.ACTION_PACKAGE_HIDE -> {
                     Log.e(TAG, packages + "应用程序隐藏")
+                    refreshApp()
+                }
+
+                ActionKey.ACTION_APP_LIST_CHANGE -> {
+                    Log.e(TAG, packages + "列表发生变化")
                     refreshApp()
                 }
             }
@@ -231,14 +318,14 @@ class MainActivity : AppCompatActivity() {
     inner class NotificationReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             val action = intent.action
-            when {
+            when (action) {
                 //开关悬浮球
-                ActionKey.ACTION_HOVER_BALL == action -> {
+                ActionKey.ACTION_HOVER_BALL -> {
                     context.sendBroadcast(Intent("com.mogu.back_key"))
 
                     EventBus.getDefault().post(MessageEvent(ActionKey.ACTION_HOVER_BALL))
                 }
-                ActionKey.ACTION_WIFI_STATUS == action -> {
+                ActionKey.ACTION_WIFI_STATUS -> {
                     //获取wifi开关状态
                     val status = wifiManager.wifiState
                     if (status == WifiManager.WIFI_STATE_ENABLED) {
@@ -251,7 +338,34 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this@MainActivity, "wifi已打开", Toast.LENGTH_SHORT).show()
                     }
                 }
+
+                Intent.ACTION_WALLPAPER_CHANGED -> {
+                    Log.e(TAG, "壁纸修改")
+                    getSysWallpaper()
+                }
             }
         }
+    }
+
+
+    @SuppressLint("CheckResult")
+    fun getSysWallpaper() {
+        RxPermission(this)
+            .request(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+            .subscribe({
+                // 获取壁纸管理器
+                val wallpaperManager = WallpaperManager.getInstance(this)
+                // 获取当前壁纸
+                val wallpaperDrawable = wallpaperManager.drawable
+                // 将Drawable,转成Bitmap
+                val bm = (wallpaperDrawable as BitmapDrawable).bitmap
+                // 设置 背景
+                mainBg.background = (BitmapDrawable(bm))
+            }, {
+                Toast.makeText(this, "壁纸功能需要读写权限才能实现", Toast.LENGTH_LONG).show()
+            })
     }
 }
