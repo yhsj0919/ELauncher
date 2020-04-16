@@ -1,13 +1,22 @@
 package xyz.yhsj.elauncher.utils
 
+import android.R.attr
 import android.content.ContentUris
 import android.content.Context
 import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
+import android.util.Base64
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
+import java.util.*
+
 
 object FileUtils {
     fun getPath(context: Context, uri: Uri): String? {
@@ -104,4 +113,73 @@ object FileUtils {
     fun isMediaDocument(uri: Uri): Boolean {
         return "com.android.providers.media.documents" == uri.authority
     }
+
+
+    fun saveImage(bmp: Bitmap): String {
+        // 文件
+        val filepath = (Environment.getExternalStorageDirectory()
+            .path + "/Elauncher/Screenshot"
+                + "/Screen_" + Date().time + ".png")
+
+        // 保存Bitmap
+        try {
+            val path = File(
+                Environment.getExternalStorageDirectory()
+                    .path + "/Elauncher/Screenshot"
+            )
+
+            val file = File(filepath)
+            if (!path.exists()) {
+                path.mkdirs()
+            }
+            if (!file.exists()) {
+                file.createNewFile()
+            }
+            var fos: FileOutputStream? = null
+            fos = FileOutputStream(file)
+            if (null != fos) {
+                bmp.compress(Bitmap.CompressFormat.PNG, 90, fos)
+                fos.flush()
+                fos.close()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return filepath
+    }
+
+    fun getIcon(packageName: String): Bitmap? {
+        // 文件
+        val filepath = (Environment.getExternalStorageDirectory()
+            .path + "/Elauncher/Icon/" + packageName + ".png")
+        // 保存Bitmap
+        try {
+            val path = File(
+                Environment.getExternalStorageDirectory()
+                    .path + "/Elauncher/Icon"
+            )
+            if (!path.exists()) {
+                path.mkdirs()
+            }
+            val file = File(filepath)
+
+            if (file.exists()) {
+                val bitmap = BitmapFactory.decodeFile(filepath)
+                return bitmap;
+            } else {
+                return null
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
+    }
+
+    fun Bitmap2StrByBase64(bit: Bitmap): String? {
+        val bos = ByteArrayOutputStream()
+        bit.compress(Bitmap.CompressFormat.JPEG, 40, bos) // 参数100表示不压缩
+        val bytes = bos.toByteArray()
+        return Base64.encodeToString(bytes, Base64.DEFAULT)
+    }
+
 }

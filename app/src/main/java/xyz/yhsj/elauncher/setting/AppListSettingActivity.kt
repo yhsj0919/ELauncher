@@ -23,6 +23,14 @@ class AppListSettingActivity : AppCompatActivity() {
         back.setOnClickListener { finish() }
 
 
+        userIcon.isChecked = SpUtil.getBoolean(this, ActionKey.APP_ICON_SHOW, false)
+        userIcon.setOnCheckedChangeListener { _, b ->
+            SpUtil.setValue(this, ActionKey.APP_ICON_SHOW, b)
+            val i = Intent(ActionKey.ACTION_APP_LIST_CHANGE)
+            i.data = Uri.parse("package:${ActionKey.ACTION_APP_LIST_CHANGE}")
+            sendBroadcast(i)
+        }
+
         appName.isChecked = SpUtil.getBoolean(this, ActionKey.APP_NAME_VISIBILITY, true)
         appName.setOnCheckedChangeListener { _, b ->
             SpUtil.setValue(this, ActionKey.APP_NAME_VISIBILITY, b)

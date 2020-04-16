@@ -3,7 +3,9 @@ package xyz.yhsj.elauncher.utils
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
 import android.text.TextUtils
+import android.util.Log
 import xyz.yhsj.elauncher.bean.AppInfo
 import java.lang.Exception
 
@@ -20,9 +22,16 @@ fun getAllApp(context: Context): ArrayList<AppInfo> {
         val packName: String = it.activityInfo.packageName
 
         val appInfo = AppInfo()
-        appInfo.icon = it.activityInfo.applicationInfo.loadIcon(pm)
+
+        val showIcon = SpUtil.getBoolean(context, ActionKey.APP_ICON_SHOW, false)
+
+        val userIcon = if (showIcon) FileUtils.getIcon(packName) else null
+        appInfo.icon = if (userIcon == null) {
+            it.activityInfo.applicationInfo.loadIcon(pm)
+        } else {
+            BitmapDrawable(userIcon)
+        }
         appInfo.name = it.activityInfo.applicationInfo.loadLabel(pm).toString()
-        appInfo.packageName = packName
         appInfo.packageName = packName
 
         try {
@@ -35,6 +44,8 @@ fun getAllApp(context: Context): ArrayList<AppInfo> {
 
         apps.add(appInfo)
     }
+
+    activities.clear()
 
     return apps
 }

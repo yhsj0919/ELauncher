@@ -18,8 +18,8 @@ class AppManagerAdapter(recyclerView: RecyclerView) :
     }
 
     override fun bindData(helper: ViewHolderHelper, position: Int, model: AppInfo) {
-        helper.setText(R.id.name, model.name)
-        helper.setText(R.id.version, model.version)
+        helper.setText(R.id.name, model.name + "  " + model.version)
+        helper.setText(R.id.version, model.packageName)
         if (model.hide) {
             helper.setImageResource(R.id.hide, R.mipmap.ic_invisible)
         } else {

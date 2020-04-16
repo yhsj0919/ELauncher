@@ -52,7 +52,8 @@ class HoverBallActivity : AppCompatActivity() {
         "清理后台",
         "wifi开关",
         "悬浮球自杀",
-        "原生应用列表"
+        "原生应用列表",
+        "截图"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -205,6 +206,7 @@ class HoverBallActivity : AppCompatActivity() {
                     R.id.wifi -> 5
                     R.id.kill -> 6
                     R.id.appList -> 7
+                    R.id.screenshot -> 8
                     else -> 0
                 }
                 SpUtil.setValue(this, spAction[actionType], checkType)

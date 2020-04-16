@@ -10,10 +10,10 @@ android {
 //        applicationId "com.moan.elauncher"
         //防止悬浮球加速时自杀
         applicationId "com.moan.moanwm"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
-        versionCode 8
-        versionName "1.5"
+        versionCode 10
+        versionName "1.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

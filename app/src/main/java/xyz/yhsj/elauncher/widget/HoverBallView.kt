@@ -3,7 +3,8 @@ package xyz.yhsj.elauncher.widget
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.util.Log
+import android.hardware.display.VirtualDisplay
+import android.media.projection.MediaProjection
 import android.view.*
 import android.widget.FrameLayout
 import android.widget.Toast
@@ -11,9 +12,9 @@ import androidx.core.content.getSystemService
 import org.greenrobot.eventbus.EventBus
 import xyz.yhsj.elauncher.R
 import xyz.yhsj.elauncher.event.MessageEvent
-import xyz.yhsj.elauncher.service.HoverBallService
 import xyz.yhsj.elauncher.utils.ActionKey
 import xyz.yhsj.elauncher.utils.SpUtil
+
 
 class HoverBallView(context: Context) : FrameLayout(context), View.OnTouchListener {
 
@@ -27,6 +28,9 @@ class HoverBallView(context: Context) : FrameLayout(context), View.OnTouchListen
     //用于屏蔽滑动多次触发，提高准确率
     private var actionLock: Boolean = false
     private var actionMove: Boolean = false
+
+    private var mMediaProjection: MediaProjection? = null
+    private var mVirtualDisplay: VirtualDisplay? = null
 
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
         val param = layoutParams as WindowManager.LayoutParams
@@ -152,10 +156,9 @@ class HoverBallView(context: Context) : FrameLayout(context), View.OnTouchListen
                 context.startActivity(intent)
             }
 
-
+            8 -> {
+                EventBus.getDefault().post(MessageEvent(ActionKey.ACTION_SYSTEM_SCREENSHOT))
+            }
         }
-
     }
-
-
 }

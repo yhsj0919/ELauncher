@@ -23,11 +23,21 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="60dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="应用管理"
             android:textColor="@android:color/black"
             android:textSize="22dp" />
+
+        <TextView
+            android:id="@+id/appManager"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="原生"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
     </LinearLayout>
 
     <LinearLayout

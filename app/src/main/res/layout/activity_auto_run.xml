@@ -22,11 +22,20 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="60dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="应用自启"
             android:textColor="@android:color/black"
             android:textSize="22dp" />
+
+        <TextView
+            android:id="@+id/AwManager"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="原生"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -82,8 +91,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14dp"
-            android:text="该功能依赖于本桌面的自启机制，将本桌面设置为默认桌面，即可在开机时自动启动自定义的一款程序。" />
+            android:text="该功能依赖于本桌面的自启机制，将本桌面设置为默认桌面，即可在开机时自动启动自定义的一款程序。"
+            android:textSize="14dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/appList"

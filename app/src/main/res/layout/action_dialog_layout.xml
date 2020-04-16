@@ -108,6 +108,15 @@
             android:textColor="@android:color/black"
             android:textSize="18dp" />
 
+        <RadioButton
+            android:id="@+id/screenshot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="截图"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
 
     </RadioGroup>
 

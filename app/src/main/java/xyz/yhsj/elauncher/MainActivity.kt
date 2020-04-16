@@ -2,6 +2,7 @@ package xyz.yhsj.elauncher
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.NotificationManager
 import android.app.WallpaperManager
 import android.content.BroadcastReceiver
@@ -9,11 +10,20 @@ import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Bitmap
+import android.graphics.PixelFormat
 import android.graphics.drawable.BitmapDrawable
+import android.hardware.display.DisplayManager
+import android.media.Image
+import android.media.ImageReader
+import android.media.projection.MediaProjection
+import android.media.projection.MediaProjectionManager
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.provider.Settings
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.GestureDetector
 import android.view.KeyEvent
@@ -30,11 +40,9 @@ import xyz.yhsj.elauncher.event.MessageEvent
 import xyz.yhsj.elauncher.permission.RxPermission
 import xyz.yhsj.elauncher.service.HoverBallService
 import xyz.yhsj.elauncher.setting.SettingActivity
-import xyz.yhsj.elauncher.utils.ActionKey
-import xyz.yhsj.elauncher.utils.Notifications
-import xyz.yhsj.elauncher.utils.SpUtil
-import xyz.yhsj.elauncher.utils.getAllApp
+import xyz.yhsj.elauncher.utils.*
 import xyz.yhsj.elauncher.widget.AppDialog
+import java.nio.ByteBuffer
 import java.util.*
 import kotlin.concurrent.thread
 
@@ -53,6 +61,8 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var listGesture: GestureDetector
     lateinit var bGgesture: GestureDetector
+
+    val REQUEST_MEDIA_PROJECTION = 4656
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,6 +107,7 @@ class MainActivity : AppCompatActivity() {
         notificationFilter.addAction(ActionKey.ACTION_HOVER_BALL)
         //wifi开关
         notificationFilter.addAction(ActionKey.ACTION_WIFI_STATUS)
+        notificationFilter.addAction(ActionKey.ACTION_SYSTEM_SCREENSHOT)
         notificationFilter.addAction(Intent.ACTION_WALLPAPER_CHANGED)
         notificationReceiver = NotificationReceiver()
         registerReceiver(notificationReceiver, notificationFilter)
@@ -199,6 +210,16 @@ class MainActivity : AppCompatActivity() {
         refreshApp()
 
         getSysWallpaper()
+
+        var mediaProjectionManager =
+            getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
+
+        startActivityForResult(
+            mediaProjectionManager.createScreenCaptureIntent(),
+            REQUEST_MEDIA_PROJECTION
+        )
+
+
     }
 
 
@@ -237,8 +258,8 @@ class MainActivity : AppCompatActivity() {
             // 如果需要更新UI 回到主线程中进行处理
 
             val apps = appInfos.filter {
-                !SpUtil.getBoolean(this, it.packageName, false)
-            }
+                    !SpUtil.getBoolean(this, it.packageName, false)
+                }
                 .filter { it.packageName != this.packageName }
                 .sortedBy { it.updateTime }
             runOnUiThread {
@@ -343,10 +364,35 @@ class MainActivity : AppCompatActivity() {
                     Log.e(TAG, "壁纸修改")
                     getSysWallpaper()
                 }
+
+                ActionKey.ACTION_SYSTEM_SCREENSHOT -> {
+                    Log.e(TAG, "开启截图权限")
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        var mediaProjectionManager =
+                            getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
+                        startActivityForResult(
+                            mediaProjectionManager.createScreenCaptureIntent(),
+                            REQUEST_MEDIA_PROJECTION
+                        )
+                    }
+                }
             }
         }
     }
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            REQUEST_MEDIA_PROJECTION -> {
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    HoverBallService.resultData = data
+                } else {
+                    Toast.makeText(this, "截图功能失效，使用时请开启相关服务", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 
     @SuppressLint("CheckResult")
     fun getSysWallpaper() {

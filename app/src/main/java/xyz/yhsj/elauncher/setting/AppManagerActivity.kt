@@ -2,15 +2,14 @@ package xyz.yhsj.elauncher.setting
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_app_manager.*
 import xyz.yhsj.elauncher.R
 import xyz.yhsj.elauncher.adapter.AppManagerAdapter
-import xyz.yhsj.elauncher.bean.AppInfo
 import xyz.yhsj.elauncher.utils.SpUtil
 import xyz.yhsj.elauncher.utils.getAllApp
 import kotlin.concurrent.thread
@@ -51,6 +50,14 @@ class AppManagerActivity : AppCompatActivity() {
             intent.data = Uri.parse("package:${appManagerAdapter.data[position].packageName}")
             startActivity(intent)
         }
+
+
+        appManager.setOnClickListener {
+            val intent = Intent(Settings.ACTION_APPLICATION_SETTINGS)
+            startActivity(intent)
+        }
+
+
 
         refreshApp()
     }

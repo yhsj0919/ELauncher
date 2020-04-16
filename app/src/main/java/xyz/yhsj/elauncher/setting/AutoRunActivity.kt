@@ -1,5 +1,7 @@
 package xyz.yhsj.elauncher.setting
 
+import android.content.ComponentName
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -44,6 +46,18 @@ class AutoRunActivity : AppCompatActivity() {
             SpUtil.setValue(this, ActionKey.AUTO_RUN_PACKAGE, item.packageName)
 
             autoRunListAdapter.data = arrayListOf()
+        }
+
+
+        AwManager.setOnClickListener {
+            val intent = Intent()
+
+            intent.component = ComponentName(
+                "com.softwinner.awmanager",
+                "com.softwinner.awmanager.AwManager"
+            )
+            intent.action = "android.intent.action.VIEW"
+            startActivity(intent)
         }
 
 

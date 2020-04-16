@@ -66,13 +66,14 @@ class SettingActivity : AppCompatActivity() {
         }
 
         deviceAdmin.setOnClickListener {
+            val mIntent = Intent()
             val cm = ComponentName(
                 "com.android.settings",
                 "com.android.settings.DeviceAdminSettings"
             )
-            intent.component = cm
-            intent.action = "android.intent.action.VIEW"
-            startActivity(intent)
+            mIntent.component = cm
+            mIntent.action = "android.intent.action.VIEW"
+            startActivity(mIntent)
         }
 
         donate.setOnClickListener {
