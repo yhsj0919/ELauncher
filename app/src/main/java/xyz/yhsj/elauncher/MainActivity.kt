@@ -228,7 +228,6 @@ class MainActivity : AppCompatActivity() {
      * 刷新应用列表
      */
     fun refreshApp() {
-
         layoutManager.spanCount = SpUtil.getInt(this, ActionKey.APP_LIST_COLUMN, 5)
 
         //设置蒙版透明度
@@ -240,7 +239,6 @@ class MainActivity : AppCompatActivity() {
                 255
             )
         )
-
 
         val arrange = SpUtil.getBoolean(this, ActionKey.APP_LIST_ARRANGE, true)
 
@@ -256,18 +254,24 @@ class MainActivity : AppCompatActivity() {
                     updateTime = if (arrange) 0 else Date().time
                 )
             )
-            appInfos.add(
-                AppInfo(
-                    name = "清理后台", packageName = "clear", isApp = false,
-                    updateTime = if (arrange) 0 else Date().time
+
+            if (SpUtil.getBoolean(this, ActionKey.APP_LIST_WIFI_SHOW, true)) {
+                appInfos.add(
+                    AppInfo(
+                        name = "清理后台", packageName = "clear", isApp = false,
+                        updateTime = if (arrange) 0 else Date().time
+                    )
                 )
-            )
-            appInfos.add(
-                AppInfo(
-                    name = "wifi", packageName = "wifi", isApp = false,
-                    updateTime = if (arrange) 0 else Date().time
+            }
+            if (SpUtil.getBoolean(this, ActionKey.APP_LIST_CLEAR_SHOW, true)) {
+                appInfos.add(
+                    AppInfo(
+                        name = "wifi", packageName = "wifi", isApp = false,
+                        updateTime = if (arrange) 0 else Date().time
+                    )
                 )
-            )
+            }
+
             // 如果需要更新UI 回到主线程中进行处理
 
             val apps = appInfos.filter {

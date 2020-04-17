@@ -42,6 +42,10 @@ class HoverBallView(context: Context) : FrameLayout(context), View.OnTouchListen
                 if (actionMove) {
                     param.x = (event.rawX + distance!!.first).toInt()
                     param.y = (event.rawY + distance!!.second).toInt()
+
+                    SpUtil.setValue(context, ActionKey.HOVER_BALL_X, param.x)
+                    SpUtil.setValue(context, ActionKey.HOVER_BALL_Y, param.y)
+
                     context.getSystemService<WindowManager>()?.updateViewLayout(this, param)
                 }
                 invalidate()

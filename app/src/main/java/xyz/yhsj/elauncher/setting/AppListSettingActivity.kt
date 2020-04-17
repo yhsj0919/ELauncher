@@ -22,7 +22,7 @@ class AppListSettingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_app_list_setting)
         back.setOnClickListener { finish() }
 
-
+        //自定义图标
         userIcon.isChecked = SpUtil.getBoolean(this, ActionKey.APP_ICON_SHOW, false)
         userIcon.setOnCheckedChangeListener { _, b ->
             SpUtil.setValue(this, ActionKey.APP_ICON_SHOW, b)
@@ -30,7 +30,7 @@ class AppListSettingActivity : AppCompatActivity() {
             i.data = Uri.parse("package:${ActionKey.ACTION_APP_LIST_CHANGE}")
             sendBroadcast(i)
         }
-
+        //应用名称
         appName.isChecked = SpUtil.getBoolean(this, ActionKey.APP_NAME_VISIBILITY, true)
         appName.setOnCheckedChangeListener { _, b ->
             SpUtil.setValue(this, ActionKey.APP_NAME_VISIBILITY, b)
@@ -38,7 +38,7 @@ class AppListSettingActivity : AppCompatActivity() {
             i.data = Uri.parse("package:${ActionKey.ACTION_APP_LIST_CHANGE}")
             sendBroadcast(i)
         }
-
+        //列表排列方式
         arrange.isChecked = SpUtil.getBoolean(this, ActionKey.APP_LIST_ARRANGE, true)
         arrange.setOnCheckedChangeListener { compoundButton, b ->
             SpUtil.setValue(this, ActionKey.APP_LIST_ARRANGE, b)
@@ -102,6 +102,24 @@ class AppListSettingActivity : AppCompatActivity() {
                 sendBroadcast(i)
             }
         })
+
+
+        //Wifi图标
+        wifiShow.isChecked = SpUtil.getBoolean(this, ActionKey.APP_LIST_WIFI_SHOW, true)
+        wifiShow.setOnCheckedChangeListener { compoundButton, b ->
+            SpUtil.setValue(this, ActionKey.APP_LIST_WIFI_SHOW, b)
+            val i = Intent(ActionKey.ACTION_APP_LIST_CHANGE)
+            i.data = Uri.parse("package:${ActionKey.ACTION_APP_LIST_CHANGE}")
+            sendBroadcast(i)
+        }
+        //清理图标
+        clearShow.isChecked = SpUtil.getBoolean(this, ActionKey.APP_LIST_CLEAR_SHOW, true)
+        clearShow.setOnCheckedChangeListener { compoundButton, b ->
+            SpUtil.setValue(this, ActionKey.APP_LIST_CLEAR_SHOW, b)
+            val i = Intent(ActionKey.ACTION_APP_LIST_CHANGE)
+            i.data = Uri.parse("package:${ActionKey.ACTION_APP_LIST_CHANGE}")
+            sendBroadcast(i)
+        }
 
     }
 }

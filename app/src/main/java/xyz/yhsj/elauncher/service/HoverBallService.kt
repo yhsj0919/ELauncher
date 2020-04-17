@@ -148,7 +148,6 @@ class HoverBallService : Service() {
         mScreenWidth = metrics.widthPixels
         mScreenHeight = metrics.heightPixels
 
-
         val smallWindowParams = WindowManager.LayoutParams()
 
         val ballSize = SpUtil.getInt(this, ActionKey.HOVER_BALL_SIZE, 50)
@@ -159,8 +158,13 @@ class HoverBallService : Service() {
         smallWindowParams.gravity = 51
         smallWindowParams.width = ballSize
         smallWindowParams.height = ballSize
-        smallWindowParams.x = (screenWidth - ballSize - 10)
-        smallWindowParams.y = (screenHeight / 2) - 50
+
+
+        val userX = SpUtil.getInt(this, ActionKey.HOVER_BALL_X, (screenWidth - ballSize - 10))
+        val userY = SpUtil.getInt(this, ActionKey.HOVER_BALL_Y, (screenHeight / 2) - 50)
+
+        smallWindowParams.x = userX
+        smallWindowParams.y = userY
 
         wm.addView(hoverBallView, smallWindowParams)
 
