@@ -77,6 +77,14 @@
             android:text="将PNG图片，修改为对应App的包名(可在应用管理页面查看)，放于Launcher/Icon目录下，手动切换显示状态将自动显示自定义图标"
             android:textSize="15dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="默认三个图标的名称分别为setting，clear，wifi"
+            android:textSize="15dp" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -163,6 +171,37 @@
                 app:stepValue="1" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/shape"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="蒙版"
+                android:textColor="@android:color/black"
+                android:textSize="20dp" />
+
+            <com.mohammedalaa.seekbar.RangeSeekBarView
+                android:id="@+id/listAlpha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barHeight="@dimen/value_bar_barHeight"
+                app:baseColor="#cccccc"
+                app:circleRadius="@dimen/value_bar_circleRadius"
+                app:circleTextColor="@color/white"
+                app:circleTextSize="@dimen/value_bar_circleTextSize"
+                app:currentValue="200"
+                app:fillColor="#555555"
+                app:maxValue="255"
+                app:minValue="0"
+                app:stepValue="10" />
+        </LinearLayout>
 
     </LinearLayout>
 

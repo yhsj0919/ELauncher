@@ -75,5 +75,33 @@ class AppListSettingActivity : AppCompatActivity() {
             }
         })
 
+
+        //蒙版透明度
+        listAlpha.setCurrentValue(SpUtil.getInt(this, ActionKey.APP_LIST_ALPHA, 200))
+        listAlpha.setOnRangeSeekBarViewChangeListener(object : OnRangeSeekBarChangeListener {
+            override fun onProgressChanged(
+                seekBar: RangeSeekBarView?,
+                progress: Int,
+                fromUser: Boolean
+            ) {
+
+            }
+
+            override fun onStartTrackingTouch(seekBar: RangeSeekBarView?) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: RangeSeekBarView?) {
+                SpUtil.setValue(
+                    this@AppListSettingActivity,
+                    ActionKey.APP_LIST_ALPHA,
+                    seekBar?.getCurrentValue() ?: 5
+                )
+                val i = Intent(ActionKey.ACTION_APP_LIST_CHANGE)
+                i.data = Uri.parse("package:${ActionKey.ACTION_APP_LIST_CHANGE}")
+                sendBroadcast(i)
+            }
+        })
+
     }
 }

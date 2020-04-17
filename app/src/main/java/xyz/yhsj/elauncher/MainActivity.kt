@@ -11,6 +11,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.PixelFormat
 import android.graphics.drawable.BitmapDrawable
 import android.hardware.display.DisplayManager
@@ -227,7 +228,19 @@ class MainActivity : AppCompatActivity() {
      * 刷新应用列表
      */
     fun refreshApp() {
+
         layoutManager.spanCount = SpUtil.getInt(this, ActionKey.APP_LIST_COLUMN, 5)
+
+        //设置蒙版透明度
+        appList.setBackgroundColor(
+            Color.argb(
+                SpUtil.getInt(this, ActionKey.APP_LIST_ALPHA, 200),
+                255,
+                255,
+                255
+            )
+        )
+
 
         val arrange = SpUtil.getBoolean(this, ActionKey.APP_LIST_ARRANGE, true)
 

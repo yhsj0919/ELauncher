@@ -1,5 +1,6 @@
 package xyz.yhsj.elauncher.adapter
 
+import android.graphics.drawable.BitmapDrawable
 import android.view.View
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.GridLayoutManager
@@ -9,6 +10,7 @@ import xyz.yhsj.elauncher.adapterpro.adapter.BaseRecyclerViewAdapter
 import xyz.yhsj.elauncher.adapterpro.helper.ViewHolderHelper
 import xyz.yhsj.elauncher.bean.AppInfo
 import xyz.yhsj.elauncher.utils.ActionKey
+import xyz.yhsj.elauncher.utils.FileUtils
 import xyz.yhsj.elauncher.utils.SpUtil
 import xyz.yhsj.elauncher.utils.dip2px
 
@@ -27,7 +29,7 @@ class AppListAdapter(recyclerView: RecyclerView) :
 
         if (!nameVisibility) {
             name.visibility = View.GONE
-        }else{
+        } else {
             name.visibility = View.VISIBLE
         }
 
@@ -57,12 +59,27 @@ class AppListAdapter(recyclerView: RecyclerView) :
             img.setImageDrawable(model.icon)
         } else {
 
-            when (model.packageName) {
-                "setting" -> img.setImageResource(R.mipmap.ic_setting)
-                "clear" -> img.setImageResource(R.mipmap.ic_clear)
-                "wifi" -> img.setImageResource(R.mipmap.ic_wifi)
-                else -> img.setImageResource(R.mipmap.ic_launcher)
+            val showIcon = SpUtil.getBoolean(mContext, ActionKey.APP_ICON_SHOW, false)
+
+            val userIcon = if (showIcon) FileUtils.getIcon(model.packageName) else null
+            if (userIcon == null) {
+                when (model.packageName) {
+                    "setting" -> {
+                        img.setImageResource(R.mipmap.ic_setting)
+                    }
+                    "clear" -> {
+                        img.setImageResource(R.mipmap.ic_clear)
+                    }
+                    "wifi" -> {
+                        img.setImageResource(R.mipmap.ic_wifi)
+                    }
+                    else -> img.setImageResource(R.mipmap.ic_launcher)
+                }
+            } else {
+                img.setImageBitmap(userIcon)
             }
+
+
         }
 
     }

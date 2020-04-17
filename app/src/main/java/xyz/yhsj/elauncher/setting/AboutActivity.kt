@@ -20,7 +20,6 @@ class AboutActivity : AppCompatActivity() {
         versionName.text = "版本：${getAppVersionName(this)}"
     }
 
-
     /**
      * 获取当前app version name
      */

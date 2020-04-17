@@ -12,6 +12,7 @@ import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.util.Base64
+import android.util.Log
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -34,11 +35,19 @@ object FileUtils {
                 }
 
             } else if (isDownloadsDocument(uri)) {
-                val id = DocumentsContract.getDocumentId(uri)
-                val contentUri: Uri = ContentUris.withAppendedId(
-                    Uri.parse("content://downloads/public_downloads"), java.lang.Long.valueOf(id)
-                )
-                return getDataColumn(context, contentUri, null, null)
+                val id = DocumentsContract.getDocumentId(uri).trim()
+
+                return if (id.startsWith("raw:")) {
+                    id.substring(4)
+                } else {
+                    val contentUri: Uri = ContentUris.withAppendedId(
+                        Uri.parse("content://downloads/public_downloads"),
+                        java.lang.Long.valueOf(id)
+                    )
+                    getDataColumn(context, contentUri, null, null)
+                }
+
+
             } else if (isMediaDocument(uri)) {
                 val docId = DocumentsContract.getDocumentId(uri)
                 val split = docId.split(":").toTypedArray()

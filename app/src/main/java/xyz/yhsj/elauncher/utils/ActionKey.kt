@@ -11,6 +11,8 @@ object ActionKey {
     val HOVER_BALL = "HoverBall"
     val HOVER_BALL_ALPHA = "HoverBallAlpha"
     val HOVER_BALL_SIZE = "HoverBallSize"
+    val HOVER_BALL_ICON_INDEX = "HoverBallSizeIconIndex"
+    val HOVER_BALL_ICON_PATH = "HoverBallSizeIconPath"
     val HOVER_BALL_CLICK = "HoverBallClick"
     val HOVER_BALL_LONG_CLICK = "HoverBallLongClick"
     val HOVER_BALL_DOUBLE_CLICK = "HoverBallDoubleClick"
@@ -21,6 +23,7 @@ object ActionKey {
 
     val APP_NAME_VISIBILITY = "App_Name_Visibility"
     val APP_LIST_COLUMN = "App_List_Column"
+    val APP_LIST_ALPHA = "App_List_Alpha"
     val APP_LIST_ARRANGE = "App_List_Arrange"
     val APP_ICON_SHOW = "App_Icon_Show"
 

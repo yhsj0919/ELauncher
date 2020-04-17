@@ -89,6 +89,60 @@
             android:text="悬浮球自杀后可通过通知栏的按钮恢复"
             android:textSize="16dp" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/shape"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="图标"
+                android:textSize="20dp" />
+
+            <RadioGroup
+                android:id="@+id/iconGroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/circleIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="16dp"
+                    android:drawablePadding="4dp"
+                    android:text="圆点" />
+
+                <RadioButton
+                    android:id="@+id/flowerIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="16dp"
+                    android:drawablePadding="4dp"
+                    android:text="樱花" />
+
+                <RadioButton
+                    android:id="@+id/userIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="16dp"
+                    android:drawablePadding="4dp"
+                    android:text="自定义" />
+
+
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black" />
 
         <LinearLayout
             android:layout_width="match_parent"

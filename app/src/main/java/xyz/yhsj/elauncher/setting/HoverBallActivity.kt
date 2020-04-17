@@ -1,36 +1,44 @@
 package xyz.yhsj.elauncher.setting
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.provider.Settings
-import android.util.Log
+import android.widget.RadioButton
 import android.widget.RadioGroup
-import android.widget.RatingBar
-import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import com.mohammedalaa.seekbar.OnRangeSeekBarChangeListener
 import com.mohammedalaa.seekbar.RangeSeekBarView
 import kotlinx.android.synthetic.main.activity_hover_ball.*
-import kotlinx.android.synthetic.main.activity_hover_ball.back
-import kotlinx.android.synthetic.main.activity_setting.*
 import org.greenrobot.eventbus.EventBus
 import xyz.yhsj.elauncher.R
 import xyz.yhsj.elauncher.event.MessageEvent
 import xyz.yhsj.elauncher.service.HoverBallService
 import xyz.yhsj.elauncher.utils.ActionKey
+import xyz.yhsj.elauncher.utils.FileUtils
 import xyz.yhsj.elauncher.utils.SpUtil
 import xyz.yhsj.elauncher.widget.ActionDialog
+import java.io.File
 
 class HoverBallActivity : AppCompatActivity() {
+
+    val IMAGE_PICK = 2654
+
     private var totalTime: Long = 100
     var handler: Handler? = null
     private val TIME = 1 //message.what字段
+
+    //用于自定义选择图标
+    private var selectIcon = 0
 
 
     val actionTitles = arrayListOf("单击", "双击", "长按", "上滑", "下滑", "左滑", "右滑")
@@ -114,6 +122,72 @@ class HoverBallActivity : AppCompatActivity() {
             //改变选中状态
             cb_open.isChecked = SpUtil.getBoolean(this, ActionKey.HOVER_BALL, false)
         }
+        val circleDrawable = resources.getDrawable(R.mipmap.icon_circle);
+        circleDrawable.setBounds(0, 0, 40, 40);//必须设置图片的大小否则没有作用
+        circleIcon.setCompoundDrawables(
+            null,
+            null,
+            circleDrawable,
+            null
+        )
+        val flowerDrawable = resources.getDrawable(R.mipmap.icon_flower);
+        flowerDrawable.setBounds(0, 0, 40, 40);//必须设置图片的大小否则没有作用
+        flowerIcon.setCompoundDrawables(
+            null,
+            null,
+            flowerDrawable,
+            null
+        )
+
+        //展示自定义图标
+        val userIconPath = SpUtil.getString(this, ActionKey.HOVER_BALL_ICON_PATH, "")
+        setUserDrawable(userIconPath)
+
+        userIcon.setOnClickListener {
+            if (userIcon.isChecked && selectIcon > 1) {
+                val intent = Intent(Intent.ACTION_GET_CONTENT)
+                intent.type = "image/*"
+                startActivityForResult(intent, IMAGE_PICK)
+            }
+            selectIcon++
+        }
+
+
+        val ballIconIndex = SpUtil.getInt(this, ActionKey.HOVER_BALL_ICON_INDEX, 0)
+        //默认选中第三个，就允许点击选择图片
+        if (ballIconIndex == 2) {
+            selectIcon = 2
+        }
+
+        val rb = iconGroup.get(ballIconIndex)
+
+        if (rb is RadioButton) {
+            rb.isChecked = true
+        }
+
+        iconGroup.setOnCheckedChangeListener { radioGroup, i ->
+            when (i) {
+                R.id.circleIcon -> {
+                    SpUtil.setValue(this, ActionKey.HOVER_BALL_ICON_INDEX, 0)
+                    selectIcon = 0
+                    EventBus.getDefault().post(MessageEvent(ActionKey.HOVER_BALL_ICON_INDEX))
+                }
+
+                R.id.flowerIcon -> {
+                    SpUtil.setValue(this, ActionKey.HOVER_BALL_ICON_INDEX, 1)
+                    selectIcon = 0
+                    EventBus.getDefault().post(MessageEvent(ActionKey.HOVER_BALL_ICON_INDEX))
+                }
+
+                R.id.userIcon -> {
+                    SpUtil.setValue(this, ActionKey.HOVER_BALL_ICON_INDEX, 2)
+                    selectIcon++
+                    EventBus.getDefault().post(MessageEvent(ActionKey.HOVER_BALL_ICON_INDEX))
+                }
+            }
+        }
+
+
         //透明度
         seekbar.setCurrentValue(SpUtil.getInt(this, ActionKey.HOVER_BALL_ALPHA, 100))
         seekbar.setOnRangeSeekBarViewChangeListener(object : OnRangeSeekBarChangeListener {
@@ -226,5 +300,38 @@ class HoverBallActivity : AppCompatActivity() {
         tv_down.text = actionName[SpUtil.getInt(this, spAction[4], 0)]
         tv_left.text = actionName[SpUtil.getInt(this, spAction[5], 0)]
         tv_right.text = actionName[SpUtil.getInt(this, spAction[6], 0)]
+    }
+
+    /**
+     * 设置自定义图标
+     */
+    private fun setUserDrawable(path: String?) {
+        val file = File(path ?: "")
+        if (file.exists()) {
+            val bitmap = BitmapFactory.decodeFile(path)
+            val userDrawable = BitmapDrawable(bitmap)
+            userDrawable.setBounds(0, 0, 40, 40);//必须设置图片的大小否则没有作用
+            userIcon.setCompoundDrawables(
+                null,
+                null,
+                userDrawable,
+                null
+            )
+        }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == IMAGE_PICK && resultCode == Activity.RESULT_OK) {
+            if (data != null && data.data != null) {
+                val uri = data.data!!
+                val imgPath = FileUtils.getPath(this, uri)
+                setUserDrawable(imgPath)
+                SpUtil.setValue(this, ActionKey.HOVER_BALL_ICON_PATH, imgPath ?: "")
+                EventBus.getDefault().post(MessageEvent(ActionKey.HOVER_BALL_ICON_INDEX))
+            }
+        }
     }
 }
