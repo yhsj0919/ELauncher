@@ -18,6 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".setting.EmptyStartActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTask"/>
+        <activity
             android:name=".setting.WallpaperActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -56,7 +60,6 @@
         </activity>
 
         <service android:name=".service.HoverBallService" />
-
     </application>
 
 </manifest>

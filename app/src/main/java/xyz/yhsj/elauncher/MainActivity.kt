@@ -40,6 +40,7 @@ import xyz.yhsj.elauncher.bean.AppInfo
 import xyz.yhsj.elauncher.event.MessageEvent
 import xyz.yhsj.elauncher.permission.RxPermission
 import xyz.yhsj.elauncher.service.HoverBallService
+import xyz.yhsj.elauncher.setting.EmptyStartActivity
 import xyz.yhsj.elauncher.setting.SettingActivity
 import xyz.yhsj.elauncher.utils.*
 import xyz.yhsj.elauncher.widget.AppDialog
@@ -69,6 +70,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         //获取wifi管理服务
         wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
         mNM = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -80,10 +82,9 @@ class MainActivity : AppCompatActivity() {
         //应用自启动
         if (SpUtil.getBoolean(this, ActionKey.AUTO_RUN, false)) {
             val packageName = SpUtil.getString(this, ActionKey.AUTO_RUN_PACKAGE, "")!!
-            val intent = packageManager.getLaunchIntentForPackage(packageName)
-            if (intent != null) {
-                startActivity(intent);
-            }
+            val intent = Intent(this, EmptyStartActivity::class.java)
+            intent.putExtra("packageName", packageName)
+            startActivity(intent)
         }
         //开启悬浮球
         if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.M || Settings.canDrawOverlays(this))
@@ -124,18 +125,9 @@ class MainActivity : AppCompatActivity() {
         appListAdapter.setOnItemClickListener { _, _, position ->
             val appInfo = appListAdapter.data[position]
             if (appInfo.isApp) {
-                val intent = packageManager.getLaunchIntentForPackage(
-                    appInfo.packageName
-                )
-                if (intent != null) {
-                    try {
-                        startActivity(intent)
-                    } catch (e: Exception) {
-                        Toast.makeText(this, "启动失败", Toast.LENGTH_SHORT).show()
-                    }
-                } else {
-                    Toast.makeText(this, "未安装", Toast.LENGTH_SHORT).show()
-                }
+                val intent = Intent(this, EmptyStartActivity::class.java)
+                intent.putExtra("packageName", appInfo.packageName)
+                startActivity(intent)
             } else {
 
                 when (appInfo.packageName) {
@@ -255,7 +247,7 @@ class MainActivity : AppCompatActivity() {
                 )
             )
 
-            if (SpUtil.getBoolean(this, ActionKey.APP_LIST_WIFI_SHOW, true)) {
+            if (SpUtil.getBoolean(this, ActionKey.APP_LIST_CLEAR_SHOW, true)) {
                 appInfos.add(
                     AppInfo(
                         name = "清理后台", packageName = "clear", isApp = false,
@@ -263,7 +255,7 @@ class MainActivity : AppCompatActivity() {
                     )
                 )
             }
-            if (SpUtil.getBoolean(this, ActionKey.APP_LIST_CLEAR_SHOW, true)) {
+            if (SpUtil.getBoolean(this, ActionKey.APP_LIST_WIFI_SHOW, true)) {
                 appInfos.add(
                     AppInfo(
                         name = "wifi", packageName = "wifi", isApp = false,
