@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="无"
+            android:text="@string/无"
             android:textColor="@android:color/black"
             android:textSize="18dp" />
 
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="返回上一级"
+            android:text="@string/返回上一级"
             android:textColor="@android:color/black"
             android:textSize="18dp" />
 
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="返回主页"
+            android:text="@string/返回主页"
             android:textColor="@android:color/black"
             android:textSize="18dp" />
 
@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="全局刷新"
+            android:text="@string/全局刷新"
             android:textColor="@android:color/black"
             android:textSize="18dp" />
 
@@ -77,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="清理后台"
+            android:text="@string/清理后台"
             android:textColor="@android:color/black"
             android:textSize="18dp" />
 
@@ -86,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="wifi开关"
+            android:text="@string/wifi开关"
             android:textColor="@android:color/black"
             android:textSize="18dp" />
 
@@ -95,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="悬浮球自杀"
+            android:text="@string/悬浮球自杀"
             android:textColor="@android:color/black"
             android:textSize="18dp" />
 
@@ -104,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="应用列表"
+            android:text="@string/应用列表"
             android:textColor="@android:color/black"
             android:textSize="18dp" />
 
@@ -113,7 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="截图"
+            android:text="@string/截图"
             android:textColor="@android:color/black"
             android:textSize="18dp" />
 
@@ -133,7 +133,7 @@
         android:gravity="center"
         android:padding="8dp"
         android:singleLine="true"
-        android:text="取消"
+        android:text="@string/取消"
         android:textColor="@android:color/black" />
 
 </RelativeLayout>

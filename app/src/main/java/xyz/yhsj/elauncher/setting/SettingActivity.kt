@@ -65,6 +65,14 @@ class SettingActivity : AppCompatActivity() {
             startActivity(Intent(Settings.ACTION_INPUT_METHOD_SETTINGS));
         }
 
+        locale.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS));
+        }
+
+        date.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_DATE_SETTINGS));
+        }
+
         deviceAdmin.setOnClickListener {
             val mIntent = Intent()
             val cm = ComponentName(

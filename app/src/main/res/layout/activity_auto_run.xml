@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="应用自启"
+            android:text="@string/应用自启"
             android:textColor="@android:color/black"
             android:textSize="22dp" />
 
@@ -33,7 +33,7 @@
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="原生"
+            android:text="@string/原生"
             android:textColor="@android:color/black"
             android:textSize="18dp" />
     </LinearLayout>
@@ -62,7 +62,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="启用"
+                android:text="@string/启用"
                 android:textColor="@android:color/black"
                 android:textSize="22dp" />
 
@@ -73,7 +73,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="点击选取"
+                android:text="@string/点击选取"
                 android:textSize="18dp" />
 
             <CheckBox

@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:layout_marginRight="60dp"
             android:gravity="center"
-            android:text="悬浮球"
+            android:text="@string/悬浮球"
             android:textColor="@android:color/black"
             android:textSize="22dp" />
     </LinearLayout>
@@ -55,7 +55,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="启用"
+                android:text="@string/启用"
                 android:textColor="@android:color/black"
                 android:textSize="22dp" />
 
@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="图标"
+                android:text="@string/图标"
                 android:textSize="20dp" />
 
             <RadioGroup
@@ -117,7 +117,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="16dp"
                     android:drawablePadding="4dp"
-                    android:text="圆点" />
+                    android:text="@string/圆点" />
 
                 <RadioButton
                     android:id="@+id/flowerIcon"
@@ -125,7 +125,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="16dp"
                     android:drawablePadding="4dp"
-                    android:text="樱花" />
+                    android:text="@string/樱花" />
 
                 <RadioButton
                     android:id="@+id/userIcon"
@@ -133,7 +133,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="16dp"
                     android:drawablePadding="4dp"
-                    android:text="自定义" />
+                    android:text="@string/自定义" />
 
 
             </RadioGroup>
@@ -156,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="透明"
+                android:text="@string/透明"
                 android:textSize="20dp" />
 
             <com.mohammedalaa.seekbar.RangeSeekBarView
@@ -192,7 +192,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="尺寸"
+                android:text="@string/尺寸"
                 android:textSize="20dp" />
 
             <com.mohammedalaa.seekbar.RangeSeekBarView
@@ -230,7 +230,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="单击"
+                android:text="@string/单击"
                 android:textSize="20dp" />
 
             <TextView
@@ -239,7 +239,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="无"
+                android:text="@string/无"
                 android:textSize="16dp" />
         </LinearLayout>
 
@@ -257,7 +257,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="双击"
+                android:text="@string/双击"
                 android:textSize="20dp" />
 
             <TextView
@@ -266,7 +266,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="无"
+                android:text="@string/无"
                 android:textSize="16dp" />
         </LinearLayout>
 
@@ -284,7 +284,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="长按"
+                android:text="@string/长按"
                 android:textSize="20dp" />
 
             <TextView
@@ -293,7 +293,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="无"
+                android:text="@string/无"
                 android:textSize="16dp" />
         </LinearLayout>
 
@@ -311,7 +311,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="上滑"
+                android:text="@string/上滑"
                 android:textSize="20dp" />
 
             <TextView
@@ -320,7 +320,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="无"
+                android:text="@string/无"
                 android:textSize="16dp" />
         </LinearLayout>
 
@@ -338,7 +338,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="下滑"
+                android:text="@string/下滑"
                 android:textSize="20dp" />
 
             <TextView
@@ -347,7 +347,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="无"
+                android:text="@string/无"
                 android:textSize="16dp" />
         </LinearLayout>
 
@@ -365,7 +365,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="左滑"
+                android:text="@string/左滑"
                 android:textSize="20dp" />
 
             <TextView
@@ -374,7 +374,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="无"
+                android:text="@string/无"
                 android:textSize="16dp" />
         </LinearLayout>
 
@@ -392,7 +392,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="右滑"
+                android:text="@string/右滑"
                 android:textSize="20dp" />
 
             <TextView
@@ -401,7 +401,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="无"
+                android:text="@string/无"
                 android:textSize="16dp" />
         </LinearLayout>
     </LinearLayout>

@@ -1,0 +1,78 @@
+<resources>
+    <string name="app_name">ELauncher</string>
+    <string name="无">None</string>
+    <string name="返回上一级">Back</string>
+    <string name="返回主页">Home</string>
+    <string name="全局刷新">Refresh</string>
+    <string name="清理后台">Boost RAM</string>
+    <string name="wifi开关">Wi-Fi toggle</string>
+    <string name="悬浮球自杀">Exit hover ball</string>
+    <string name="应用列表">Apps</string>
+    <string name="截图">Screenshot</string>
+    <string name="取消">Cancel</string>
+
+    <string name="关于">About</string>
+
+    <string name="列表设置">Home screen</string>
+    <string name="自定义图标">Custom icons</string>
+    <string name="不显示">Off</string>
+    <string name="显示">On</string>
+    <string name="应用名称">Icon labels</string>
+    <string name="排列方式">Align</string>
+    <string name="顶部排列">Top</string>
+    <string name="底部排列">Bottom</string>
+    <string name="列数">Rows</string>
+    <string name="蒙版">Opacity</string>
+    <string name="WiFi图标">Wi-Fi</string>
+    <string name="清理图标">Boost</string>
+
+    <string name="应用管理">Apps</string>
+    <string name="原生">System</string>
+
+    <string name="应用自启">Auto start</string>
+    <string name="启用">Active</string>
+    <string name="点击选取">Select</string>
+
+    <string name="赞赏">Donate</string>
+
+    <string name="悬浮球">Hover ball</string>
+    <string name="图标">Shape</string>
+    <string name="圆点">Circle</string>
+    <string name="樱花">Flower</string>
+    <string name="自定义">Custom</string>
+    <string name="透明">Opacity</string>
+    <string name="尺寸">Size</string>
+    <string name="单击">Click</string>
+    <string name="双击">Double click</string>
+    <string name="长按">Long press</string>
+    <string name="上滑">Swipe up</string>
+    <string name="下滑">Swipe down</string>
+    <string name="左滑">Swipe left</string>
+    <string name="右滑">Swipe right</string>
+
+    <string name="设置">Home settings</string>
+    <string name="壁纸设置">Wallpaper</string>
+    <string name="无障碍">Accessibility</string>
+    <string name="输入法">Input methods</string>
+    <string name="语言偏好设置">Language preferences</string>
+    <string name="日期和时间">Date &amp; time</string>
+    <string name="设备管理器">Device manager</string>
+
+    <string name="壁纸">Wallpaper</string>
+    <string name="选择壁纸">Select</string>
+    <string name="设置壁纸">Save</string>
+
+    <string name="卸载">Uninstall</string>
+    <string name="隐藏">Hide</string>
+    <string name="详细信息">App info</string>
+
+    <string name="返回桌面">Home</string>
+
+    <string name="原生应用列表">Apps</string>
+
+    <string name="桌面设置">Home settings</string>
+    <string name="清理后台_Boost">Boost</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="wifi已关闭">Wi-Fi off</string>
+    <string name="wifi已打开">Wi-Fi on</string>
+</resources>

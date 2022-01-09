@@ -40,8 +40,8 @@ class HoverBallActivity : AppCompatActivity() {
     //用于自定义选择图标
     private var selectIcon = 0
 
+    lateinit var actionTitles: ArrayList<String>
 
-    val actionTitles = arrayListOf("单击", "双击", "长按", "上滑", "下滑", "左滑", "右滑")
     val spAction = arrayListOf(
         ActionKey.HOVER_BALL_CLICK,
         ActionKey.HOVER_BALL_DOUBLE_CLICK,
@@ -52,21 +52,32 @@ class HoverBallActivity : AppCompatActivity() {
         ActionKey.HOVER_BALL_RIGHT
     )
 
-    val actionName = arrayListOf(
-        "无",
-        "返回上一级",
-        "返回主页",
-        "全局刷新",
-        "清理后台",
-        "wifi开关",
-        "悬浮球自杀",
-        "原生应用列表",
-        "截图"
-    )
+    lateinit var actionName: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hover_ball)
+        //本地化
+        actionTitles = arrayListOf(
+            getString(R.string.单击),
+            getString(R.string.双击),
+            getString(R.string.长按),
+            getString(R.string.上滑),
+            getString(R.string.下滑),
+            getString(R.string.左滑),
+            getString(R.string.右滑)
+        )
+        actionName = arrayListOf(
+            getString(R.string.无),
+            getString(R.string.返回上一级),
+            getString(R.string.返回主页),
+            getString(R.string.全局刷新),
+            getString(R.string.清理后台),
+            getString(R.string.wifi开关),
+            getString(R.string.悬浮球自杀),
+            getString(R.string.原生应用列表),
+            getString(R.string.截图)
+        )
         //选中状态
         cb_open.isChecked = SpUtil.getBoolean(this, ActionKey.HOVER_BALL, false)
         //这里用来授权后自动启动悬浮球
