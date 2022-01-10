@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:layout_marginRight="60dp"
             android:gravity="center"
-            android:text="列表设置"
+            android:text="@string/列表设置"
             android:textColor="@android:color/black"
             android:textSize="22dp" />
     </LinearLayout>
@@ -54,7 +54,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="自定义图标"
+                android:text="@string/自定义图标"
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />
 
@@ -65,8 +65,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/shape"
                 android:elevation="0dp"
-                android:textOff="不显示"
-                android:textOn="显示" />
+                android:textOff="@string/不显示"
+                android:textOn="@string/显示" />
         </LinearLayout>
 
         <TextView
@@ -98,7 +98,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="应用名称"
+                android:text="@string/应用名称"
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />
 
@@ -108,8 +108,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/shape"
                 android:elevation="0dp"
-                android:textOff="不显示"
-                android:textOn="显示" />
+                android:textOff="@string/不显示"
+                android:textOn="@string/显示" />
         </LinearLayout>
 
         <LinearLayout
@@ -124,7 +124,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="排列方式"
+                android:text="@string/排列方式"
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />
 
@@ -134,8 +134,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/shape"
                 android:elevation="0dp"
-                android:textOff="顶部排列"
-                android:textOn="底部排列" />
+                android:textOff="@string/顶部排列"
+                android:textOn="@string/底部排列" />
         </LinearLayout>
 
 
@@ -151,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="列数"
+                android:text="@string/列数"
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />
 
@@ -183,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="蒙版"
+                android:text="@string/蒙版"
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />
 
@@ -215,7 +215,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="WiFi图标"
+                android:text="@string/WiFi图标"
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />
 
@@ -225,8 +225,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/shape"
                 android:elevation="0dp"
-                android:textOff="不显示"
-                android:textOn="显示" />
+                android:textOff="@string/不显示"
+                android:textOn="@string/显示" />
         </LinearLayout>
 
         <LinearLayout
@@ -241,7 +241,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="清理图标"
+                android:text="@string/清理图标"
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />
 
@@ -251,8 +251,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/shape"
                 android:elevation="0dp"
-                android:textOff="不显示"
-                android:textOn="显示" />
+                android:textOff="@string/不显示"
+                android:textOn="@string/显示" />
         </LinearLayout>
 
     </LinearLayout>

@@ -17,7 +17,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center_vertical"
-        android:text="返回桌面"
+        android:text="@string/返回桌面"
         android:textColor="@android:color/black"
         android:textSize="20dp" />
 
@@ -31,7 +31,7 @@
         android:background="?android:attr/selectableItemBackground"
         android:drawableTop="@mipmap/ic_ball"
         android:padding="8dp"
-        android:text="悬浮球"
+        android:text="@string/悬浮球"
         android:textSize="12dp" />
 
 

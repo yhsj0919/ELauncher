@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="设置"
+            android:text="@string/设置"
             android:textColor="@android:color/black"
             android:textSize="22dp" />
     </LinearLayout>
@@ -60,7 +60,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:padding="8dp"
-                    android:text="悬浮球"
+                    android:text="@string/悬浮球"
                     android:textColor="@android:color/black"
                     android:textSize="22dp" />
 
@@ -88,7 +88,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:padding="8dp"
-                    android:text="壁纸设置"
+                    android:text="@string/壁纸设置"
                     android:textColor="@android:color/black"
                     android:textSize="22dp" />
 
@@ -116,7 +116,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:padding="8dp"
-                    android:text="列表设置"
+                    android:text="@string/列表设置"
                     android:textColor="@android:color/black"
                     android:textSize="22dp" />
 
@@ -144,7 +144,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:padding="8dp"
-                    android:text="应用自启"
+                    android:text="@string/应用自启"
                     android:textColor="@android:color/black"
                     android:textSize="22dp" />
 
@@ -172,7 +172,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:padding="8dp"
-                    android:text="应用管理"
+                    android:text="@string/应用管理"
                     android:textColor="@android:color/black"
                     android:textSize="22dp" />
 
@@ -200,7 +200,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:padding="8dp"
-                    android:text="无障碍"
+                    android:text="@string/无障碍"
                     android:textColor="@android:color/black"
                     android:textSize="22dp" />
 
@@ -228,7 +228,62 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:padding="8dp"
-                    android:text="输入法"
+                    android:text="@string/输入法"
+                    android:textColor="@android:color/black"
+                    android:textSize="22dp" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="65dp"
+                    android:src="@mipmap/ic_go" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
+
+            <LinearLayout
+                android:id="@+id/locale"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="@drawable/shape"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="@string/语言偏好设置"
+                    android:textColor="@android:color/black"
+                    android:textSize="22dp" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="65dp"
+                    android:src="@mipmap/ic_go" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
+
+            <LinearLayout
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="@drawable/shape"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="@string/日期和时间"
                     android:textColor="@android:color/black"
                     android:textSize="22dp" />
 
@@ -256,7 +311,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:padding="8dp"
-                    android:text="设备管理器"
+                    android:text="@string/设备管理器"
                     android:textColor="@android:color/black"
                     android:textSize="22dp" />
 
@@ -284,7 +339,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:padding="8dp"
-                    android:text="赞赏"
+                    android:text="@string/赞赏"
                     android:textColor="@android:color/black"
                     android:textSize="22dp" />
 
@@ -312,7 +367,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:padding="8dp"
-                    android:text="关于"
+                    android:text="@string/关于"
                     android:textColor="@android:color/black"
                     android:textSize="22dp" />
 
@@ -340,7 +395,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:padding="8dp"
-                    android:text="卸载"
+                    android:text="@string/卸载"
                     android:textColor="@android:color/black"
                     android:textSize="22dp" />
 

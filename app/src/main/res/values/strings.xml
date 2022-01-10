@@ -9,4 +9,78 @@
     <string name="channel_default">Default events</string>
     <string name="channel_low">Low events</string>
     <string name="channel_media">Media events</string>
+
+    <string name="无">无</string>
+    <string name="返回上一级">返回上一级</string>
+    <string name="返回主页">返回主页</string>
+    <string name="全局刷新">全局刷新</string>
+    <string name="清理后台">清理后台</string>
+    <string name="wifi开关">wifi开关</string>
+    <string name="悬浮球自杀">悬浮球自杀</string>
+    <string name="应用列表">应用列表</string>
+    <string name="截图">截图</string>
+    <string name="取消">取消</string>
+
+    <string name="关于">关于</string>
+
+    <string name="列表设置">列表设置</string>
+    <string name="自定义图标">自定义图标</string>
+    <string name="不显示">不显示</string>
+    <string name="显示">显示</string>
+    <string name="应用名称">应用名称</string>
+    <string name="排列方式">排列方式</string>
+    <string name="顶部排列">顶部排列</string>
+    <string name="底部排列">底部排列</string>
+    <string name="列数">列数</string>
+    <string name="蒙版">蒙版</string>
+    <string name="WiFi图标">WiFi图标</string>
+    <string name="清理图标">清理图标</string>
+
+    <string name="应用管理">应用管理</string>
+    <string name="原生">原生</string>
+    <string name="应用自启">应用自启</string>
+    <string name="启用">启用</string>
+    <string name="点击选取">点击选取</string>
+
+    <string name="赞赏">赞赏</string>
+
+    <string name="悬浮球">悬浮球</string>
+    <string name="图标">图标</string>
+    <string name="圆点">圆点</string>
+    <string name="樱花">樱花</string>
+    <string name="自定义">自定义</string>
+    <string name="透明">透明</string>
+    <string name="尺寸">尺寸</string>
+    <string name="单击">单击</string>
+    <string name="双击">双击</string>
+    <string name="长按">长按</string>
+    <string name="上滑">上滑</string>
+    <string name="下滑">下滑</string>
+    <string name="左滑">左滑</string>
+    <string name="右滑">右滑</string>
+
+    <string name="设置">设置</string>
+    <string name="壁纸设置">壁纸设置</string>
+    <string name="无障碍">无障碍</string>
+    <string name="输入法">输入法</string>
+    <string name="语言偏好设置">语言偏好设置</string>
+    <string name="日期和时间">日期和时间</string>
+    <string name="设备管理器">设备管理器</string>
+
+    <string name="壁纸">壁纸</string>
+    <string name="选择壁纸">选择壁纸</string>
+    <string name="设置壁纸">设置壁纸</string>
+
+    <string name="卸载">卸载</string>
+    <string name="隐藏">隐藏</string>
+    <string name="详细信息">详细信息</string>
+
+    <string name="返回桌面">返回桌面</string>
+
+    <string name="原生应用列表">原生应用列表</string>
+    <string name="桌面设置">桌面设置</string>
+    <string name="清理后台_Boost">清理后台</string>
+    <string name="wifi">wifi</string>
+    <string name="wifi已关闭">wifi已关闭</string>
+    <string name="wifi已打开">wifi已打开</string>
 </resources>

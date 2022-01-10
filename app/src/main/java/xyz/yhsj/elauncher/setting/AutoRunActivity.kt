@@ -31,7 +31,7 @@ class AutoRunActivity : AppCompatActivity() {
             SpUtil.setValue(this, ActionKey.AUTO_RUN, b)
         }
 
-        tv_package.text = SpUtil.getString(this, ActionKey.AUTO_RUN_NAME, "点击选取")
+        tv_package.text = SpUtil.getString(this, ActionKey.AUTO_RUN_NAME, getString(R.string.点击选取))
 
         autoRunListAdapter = AutoRunListAdapter(appList)
         appList.layoutManager = LinearLayoutManager(this)

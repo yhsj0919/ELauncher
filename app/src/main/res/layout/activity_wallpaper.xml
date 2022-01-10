@@ -26,7 +26,7 @@
             android:layout_height="match_parent"
             android:layout_marginRight="60dp"
             android:gravity="center"
-            android:text="壁纸"
+            android:text="@string/壁纸"
             android:textColor="@android:color/black"
             android:textSize="22dp" />
     </LinearLayout>
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/shape"
             android:padding="8dp"
-            android:text="选择壁纸"
+            android:text="@string/选择壁纸"
             android:textColor="@android:color/black"
             android:textSize="20dp" />
 
@@ -55,7 +55,7 @@
             android:layout_alignParentRight="true"
             android:background="@drawable/shape"
             android:padding="8dp"
-            android:text="设置壁纸"
+            android:text="@string/设置壁纸"
             android:textColor="@android:color/black"
             android:textSize="20dp" />
     </RelativeLayout>

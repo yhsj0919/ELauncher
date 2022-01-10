@@ -240,7 +240,7 @@ class MainActivity : AppCompatActivity() {
             val appInfos = getAllApp(this)
             appInfos.add(
                 AppInfo(
-                    name = "桌面设置",
+                    name = getString(R.string.桌面设置),
                     packageName = "setting",
                     isApp = false,
                     updateTime = if (arrange) 0 else Date().time
@@ -250,7 +250,7 @@ class MainActivity : AppCompatActivity() {
             if (SpUtil.getBoolean(this, ActionKey.APP_LIST_CLEAR_SHOW, true)) {
                 appInfos.add(
                     AppInfo(
-                        name = "清理后台", packageName = "clear", isApp = false,
+                        name = getString(R.string.清理后台_Boost), packageName = "clear", isApp = false,
                         updateTime = if (arrange) 0 else Date().time
                     )
                 )
@@ -258,7 +258,7 @@ class MainActivity : AppCompatActivity() {
             if (SpUtil.getBoolean(this, ActionKey.APP_LIST_WIFI_SHOW, true)) {
                 appInfos.add(
                     AppInfo(
-                        name = "wifi", packageName = "wifi", isApp = false,
+                        name = getString(R.string.wifi), packageName = "wifi", isApp = false,
                         updateTime = if (arrange) 0 else Date().time
                     )
                 )
@@ -361,11 +361,11 @@ class MainActivity : AppCompatActivity() {
                     if (status == WifiManager.WIFI_STATE_ENABLED) {
                         //wifi打开状态则关闭
                         wifiManager.isWifiEnabled = false;
-                        Toast.makeText(this@MainActivity, "wifi已关闭", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActivity, getString(R.string.wifi已关闭), Toast.LENGTH_SHORT).show()
                     } else {
                         //关闭状态则打开
                         wifiManager.isWifiEnabled = true;
-                        Toast.makeText(this@MainActivity, "wifi已打开", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActivity, getString(R.string.wifi已打开), Toast.LENGTH_SHORT).show()
                     }
                 }
 
